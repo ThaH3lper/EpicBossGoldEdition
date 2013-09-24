@@ -1,0 +1,64 @@
+SwordOfStr:
+  Id: 276
+  Data: 0
+  Amount: 1
+  Display: '&3Sword of Strength'
+  Tags:
+    Speed: 0.01
+    Health: 4
+  Lores:
+  - '&5This is a rare item'
+  - '&5that only the strongest'
+  - '&5players can get...'
+  Enchants:
+  - DAMAGE_ALL:5
+  - KNOCKBACK:2
+  - FIRE_ASPECT:2
+HoeOfSpeed:
+  Id: 292
+  Data: 0
+  Amount: 1
+  Display: '&cHoe of Speed'
+  Tags:
+    Speed: 0.04
+    Attack: 4
+  Lores:
+  - '&4Speeeed....'
+  Enchants:
+  - KNOCKBACK:2
+Mask:
+  Id: 397
+  Data: 3
+  Amount: 1
+  Display: '&dMask of ThaH3lper'
+  Lores:
+  - '&6Belongs to creator of'
+  - '&6EpicBoss Gold Edition!'
+  Enchants:
+  - PROTECTION_ENVIRONMENTAL:5
+  - PROTECTION_FIRE:5
+  - PROTECTION_EXPLOSIONS:5
+  - PROTECTION_PROJECTILE:5
+  - OXYGEN:5
+  - WATER_WORKER:5
+  - THORNS:1
+  Tags:
+    Speed: 0.05
+    Attack: 10
+    Health: 20
+    KnockbackRes: 10
+    Player: ThaH3lper
+Chest:
+  Id: 299
+  Data: 0
+  Amount: 1
+  Display: '&4Blood Armor'
+  Lores:
+  - '&4Its red from all'
+  - '&4the blood splashes'
+  Enchants:
+  - PROTECTION_ENVIRONMENTAL:5
+  - PROTECTION_EXPLOSIONS:5
+  Tags:
+    Health: 5
+    Color: 255,0,0

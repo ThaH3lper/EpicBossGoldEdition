@@ -1,0 +1,21 @@
+loot1:
+  Loot:
+  - Mask 1
+  - 264:0:20 1
+loot2:
+  Loot:
+  - 265:0:15 1
+loot3:
+  Loot:
+  - 266:0:10 1
+loot4:
+  Loot:
+  - 314:0:1:4 0.5
+  - 315:0:1:3 0.5
+  - 316:0:1:2 0.5
+  - 317:0:1:1 0.5
+loot5:
+  Loot:
+  - Mask:4 1
+  - Chest:3 1
+  - HoeOfSpeed:0 1

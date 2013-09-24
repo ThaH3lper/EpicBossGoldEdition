@@ -1,0 +1,28 @@
+name: EpicBoss Gold Edition
+main: me.ThaH3lper.com.EpicBoss
+version: 0.0.5
+description: By ThaH3lper :)
+commands:
+  epicboss:
+      description: EpicBoss Base Command!
+      aliases: [eb]
+
+permissions:
+  epicboss.admin:
+    description: Gives access to everything!
+    default: op
+  epicboss.item:
+    description: Gives access /eb item commands!
+    default: op
+  epicboss.location:
+    description: Gives access /eb loc commands!
+    default: op
+  epicboss.mob:
+    description: Gives access /eb mob commands!
+    default: op
+  epicboss.timer:
+    description: Gives access to create and remove timers!
+    default: op
+  epicboss.reload:
+    description: Gives access /eb reload!
+    default: op

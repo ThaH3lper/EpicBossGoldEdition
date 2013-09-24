@@ -1,0 +1,10 @@
+timer1:
+  Bosses: zombieking
+  MaxAmount: 3
+  RespawnTime: 120
+  WalkDistance: 0
+timer2:
+  Bosses: zombieking
+  MaxAmount: 1
+  RespawnTime: 600
+  WalkDistance: 20

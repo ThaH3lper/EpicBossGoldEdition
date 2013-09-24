@@ -1,0 +1,10 @@
+Heal:
+  Skills:
+  - msg 50:'&4You cant kill me! Heal up!' <0 1
+  - heal 10 <0 1
+  - bossfirework BALL:0,255,0:false:true <0 1
+SwarmZombie:
+  Skills:
+  - msg 50:'&4Take THIS!' <0 1
+  - radiousfirework 10:5:BALL:200,0,100:false:true <0 1
+  - swarm zombie:10:5 <0 1

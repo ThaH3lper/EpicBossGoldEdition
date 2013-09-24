@@ -1,0 +1,42 @@
+zombieking:
+  Mobtype: zombie
+  Display: '&6Zombie King'
+  Health: 200
+  Damage: 10
+  ShowHealth: true
+  Despawn: false
+  Skills:
+  - pack Heal <0 0.18
+  - cmd 'say $player work more!' =100 1
+  Loot:
+  - loot5
+  - loot3
+  Equipment:
+  - loot4
+fairboss:
+  Mobtype: skeleton
+  Display: '&dHardcore Boss'
+  Health: 100
+  Damage: 10
+  ShowHealth: true
+  Despawn: false
+  Skills:
+  - pack SwarmZombie =50 1
+  - swarm zombie:1:5 <0 0.2
+  Loot:
+  - loot1:1
+  - loot2:2
+  - loot3:3
+  Equipment:
+  - loot5
+sheep:
+  Mobtype: sheep
+  Display: '&2Green Sheep'
+  Health: 500
+  Damage: 0
+  ShowHealth: true
+  Despawn: false
+  Tags:
+    Color: 10
+rider:
+  Bosslist: sheep,zombieking
