@@ -40,7 +40,6 @@ public class LoadMobList {
 			if(i.isDead() != true)
 			{
 				s += i.getUniqueId() + ":" + MobCommon.getEpicMob(i).cmdName + ":" + i.getWorld().getName() + ":" + i.getWorld().getChunkAt(i.getLocation()).getX() + ":" + i.getWorld().getChunkAt(i.getLocation()).getZ() + ",";
-				Bukkit.broadcastMessage(ChatColor.RED + "" + i.getUniqueId());
 			}
 		}
 		return s;
@@ -64,7 +63,6 @@ public class LoadMobList {
 						UUID i = UUID.fromString(data[0]);
 						if(l.getUniqueId().compareTo(i) == 0)
 						{
-							Bukkit.broadcastMessage(ChatColor.GREEN + "" + l.getUniqueId());
 							l = MobCommon.setMeta(l, data[1], "cmdname");
 							list.add(l);
 						}

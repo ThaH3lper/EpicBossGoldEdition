@@ -24,7 +24,6 @@ public class MobSkill implements Listener{
 		if(!(e.getEntity() instanceof LivingEntity))
 			return;
 		LivingEntity l = (LivingEntity) e.getEntity();
-		Bukkit.broadcastMessage(l.getUniqueId() + "");
 		if(!EpicBoss.plugin.allMobs.contains(l))
 			return;
 		EpicMobs em = MobCommon.getEpicMob(l);
