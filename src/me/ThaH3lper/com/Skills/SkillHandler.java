@@ -39,7 +39,7 @@ public class SkillHandler {
 				SkillBossFirework.ExecuteBossFirework(l, skill);
 			if(split[0].equals("playerfirework"))
 				SkillPlayerFirework.ExecutePlayerFirework(l, skill, p);
-			if(split[0].equals("radiousfirework"))
+			if((split[0].equals("radiousfirework")) || (split[0].equals("radiusfirework")))
 				SkillRadiousFirework.ExecuteRadiousFirework(l, skill);
 			if(split[0].equals("pack"))
 				SkillPack.ExecutePack(l, skill, p);
@@ -67,9 +67,9 @@ public class SkillHandler {
 	
 	public static boolean CheckHealth(String health, LivingEntity l, String full)
 	{
-		if(health.contains("<"))
+		if(health.contains(">"))
 		{
-			health = health.replace("<", "");
+			health = health.replace(">", "");
 			double hp = Double.parseDouble(health);
 			if(l.getHealth() > hp)
 				return true;
@@ -84,9 +84,9 @@ public class SkillHandler {
 				return true;
 			}
 		}
-		else if(health.contains(">"))
+		else if(health.contains("<"))
 		{
-			health = health.replace(">", "");
+			health = health.replace("<", "");
 			double hp = Double.parseDouble(health);
 			if(l.getHealth() < hp)
 				return true;	
