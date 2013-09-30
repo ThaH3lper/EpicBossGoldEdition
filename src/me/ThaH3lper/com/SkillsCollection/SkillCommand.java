@@ -36,9 +36,8 @@ public class SkillCommand {
 							Rpattern = Pattern.compile("player_x%([0-9]+)");
 							Rmatcher = Rpattern.matcher(msg);
 							Rmatcher.find();
-							Random generator = new Random();
-							rand = generator.nextInt(2);
-							rand = (rand == 1) ? generator.nextInt(1+Integer.parseInt(Rmatcher.group(1))) : 0 - generator.nextInt(Integer.parseInt(Rmatcher.group(1)));
+							rand = EpicBoss.r.nextInt(2);
+							rand = (rand == 1) ? EpicBoss.r.nextInt(1+Integer.parseInt(Rmatcher.group(1))) : 0 - EpicBoss.r.nextInt(Integer.parseInt(Rmatcher.group(1)));
 							
 							msg = msg.replace("$player_x%" + Rmatcher.group(1), Integer.toString(player.getLocation().getBlockX() + rand));
 						} else	{
@@ -54,9 +53,8 @@ public class SkillCommand {
 							Rpattern = Pattern.compile("player_y%([0-9]+)");
 							Rmatcher = Rpattern.matcher(msg);
 							Rmatcher.find();
-							Random generator = new Random();
-							rand = generator.nextInt(2);
-							rand = (rand == 1) ? generator.nextInt(1+Integer.parseInt(Rmatcher.group(1))) : 0 - generator.nextInt(Integer.parseInt(Rmatcher.group(1)));
+							rand = EpicBoss.r.nextInt(2);
+							rand = (rand == 1) ? EpicBoss.r.nextInt(1+Integer.parseInt(Rmatcher.group(1))) : 0 - EpicBoss.r.nextInt(Integer.parseInt(Rmatcher.group(1)));
 							
 							msg = msg.replace("$player_y%" + Rmatcher.group(1), Integer.toString(player.getLocation().getBlockY() + rand));
 						} else	{
@@ -72,9 +70,8 @@ public class SkillCommand {
 							Rpattern = Pattern.compile("player_z%([0-9]+)");
 							Rmatcher = Rpattern.matcher(msg);
 							Rmatcher.find();
-							Random generator = new Random();
-							rand = generator.nextInt(2);
-							rand = (rand == 1) ? generator.nextInt(1+Integer.parseInt(Rmatcher.group(1))) : 0 - generator.nextInt(Integer.parseInt(Rmatcher.group(1)));
+							rand = EpicBoss.r.nextInt(2);
+							rand = (rand == 1) ? EpicBoss.r.nextInt(1+Integer.parseInt(Rmatcher.group(1))) : 0 - EpicBoss.r.nextInt(Integer.parseInt(Rmatcher.group(1)));
 							
 							msg = msg.replace("$player_z%" + Rmatcher.group(1), Integer.toString(player.getLocation().getBlockZ() + rand));
 						} else	{
@@ -94,9 +91,8 @@ public class SkillCommand {
 						Rpattern = Pattern.compile("boss_x%([0-9]+)");
 						Rmatcher = Rpattern.matcher(msg);
 						Rmatcher.find();
-						Random generator = new Random();
-						rand = generator.nextInt(2);
-						rand = (rand == 1) ? generator.nextInt(1+Integer.parseInt(Rmatcher.group(1))) : 0 - generator.nextInt(Integer.parseInt(Rmatcher.group(1)));
+						rand = EpicBoss.r.nextInt(2);
+						rand = (rand == 1) ? EpicBoss.r.nextInt(1+Integer.parseInt(Rmatcher.group(1))) : 0 - EpicBoss.r.nextInt(Integer.parseInt(Rmatcher.group(1)));
 						
 						msg = msg.replace("$boss_x%" + Rmatcher.group(1), Integer.toString(l.getLocation().getBlockX() + rand));
 					} else	{
@@ -109,9 +105,8 @@ public class SkillCommand {
 						Rpattern = Pattern.compile("boss_y%([0-9]+)");
 						Rmatcher = Rpattern.matcher(msg);
 						Rmatcher.find();
-						Random generator = new Random();
-						rand = generator.nextInt(2);
-						rand = (rand == 1) ? generator.nextInt(1+Integer.parseInt(Rmatcher.group(1))) : 0 - generator.nextInt(Integer.parseInt(Rmatcher.group(1)));
+						rand = EpicBoss.r.nextInt(2);
+						rand = (rand == 1) ? EpicBoss.r.nextInt(1+Integer.parseInt(Rmatcher.group(1))) : 0 - EpicBoss.r.nextInt(Integer.parseInt(Rmatcher.group(1)));
 						
 						msg = msg.replace("$boss_y%" + Rmatcher.group(1), Integer.toString(l.getLocation().getBlockY() + rand));
 					} else	{
@@ -124,9 +119,8 @@ public class SkillCommand {
 						Rpattern = Pattern.compile("boss_z%([0-9]+)");
 						Rmatcher = Rpattern.matcher(msg);
 						Rmatcher.find();
-						Random generator = new Random();
-						rand = generator.nextInt(2);
-						rand = (rand == 1) ? generator.nextInt(1+Integer.parseInt(Rmatcher.group(1))) : 0 - generator.nextInt(Integer.parseInt(Rmatcher.group(1)));
+						rand = EpicBoss.r.nextInt(2);
+						rand = (rand == 1) ? EpicBoss.r.nextInt(1+Integer.parseInt(Rmatcher.group(1))) : 0 - EpicBoss.r.nextInt(Integer.parseInt(Rmatcher.group(1)));
 						
 						msg = msg.replace("$boss_z%" + Rmatcher.group(1), Integer.toString(l.getLocation().getBlockZ() + rand));
 					} else	{
