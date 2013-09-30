@@ -1,5 +1,6 @@
 package me.ThaH3lper.com.Mobs;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.bukkit.entity.LivingEntity;
@@ -9,6 +10,7 @@ public class EpicMobs {
 	public String Mobtype, Display, file, cmdName, oso, horseStyle, horseType;
 	public double health, damage, speed, knock, follow;
 	public List<String> skills, loot, equipment;
+	public HashMap<String,Long> cooldowns;
 	public boolean despawn, showhp, fair = false;
 	int size, color;
 	
@@ -42,6 +44,7 @@ public class EpicMobs {
 			}
 		}
 		this.equipment = equipment;
+		this.cooldowns = new HashMap<String,Long>();
 	}
 	
 	public LivingEntity getLivingenEntity()

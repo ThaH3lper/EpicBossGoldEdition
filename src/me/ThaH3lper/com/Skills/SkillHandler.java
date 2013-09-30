@@ -3,6 +3,7 @@ package me.ThaH3lper.com.Skills;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.ThaH3lper.com.EpicBoss;
 import me.ThaH3lper.com.Mobs.MobCommon;
 import me.ThaH3lper.com.SkillsCollection.SkillBossFirework;
 import me.ThaH3lper.com.SkillsCollection.SkillCommand;
@@ -18,6 +19,9 @@ import me.ThaH3lper.com.SkillsCollection.SkillRadiusCommand;
 import me.ThaH3lper.com.SkillsCollection.SkillSwarm;
 import me.ThaH3lper.com.SkillsCollection.SkillThrow;
 
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Creature;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.metadata.MetadataValue;
@@ -30,6 +34,35 @@ public class SkillHandler {
 		{
 			ExecuteSkill(l, line, p);
 		}
+	}
+	
+	public static void ExecutePackSkills(List<String> list, LivingEntity l, Player p)
+	{
+		List<String> DelayedSkills = new ArrayList<String>();
+		boolean delayrest = false;
+		int delayamount = 0;
+		
+		for(String line : list)
+		{
+			if(delayrest == false)	{
+				String[] split = line.split(" ");
+				if(split[0].equals("delay"))	{
+					delayrest = true;
+					delayamount = Integer.parseInt(split[1]);
+					continue;
+				} else	{
+					ExecuteSkill(l, line, p);
+				}				
+			} else	{
+				DelayedSkills.add(line);
+			}
+		}
+		
+		if(delayrest == true)	{
+			DelayedSkill ds = new DelayedSkill(DelayedSkills, l, p);
+			Bukkit.getScheduler().scheduleSyncDelayedTask(EpicBoss.plugin, ds, delayamount);
+		}
+		
 	}
 	
 	public static void ExecuteSkill(LivingEntity l, String skill, Player p)
@@ -123,5 +156,54 @@ public class SkillHandler {
 				return true;
 		}
 		return false;
+	}
+	
+	private static class DelayedSkill implements Runnable { 
+		private List<String> list;
+		private LivingEntity boss;
+		private Player player;
+		private boolean cancelled;
+		
+		public DelayedSkill(List<String> list, LivingEntity l, Player p)	{
+			this.list = list;
+			this.boss = l;
+			this.player = p;
+			this.cancelled = false;
+		}
+		
+		public void cancel() {
+			this.list = null;
+			this.cancelled = true;
+		}
+		
+		@Override
+        public void run() {
+			if (!cancelled) {
+				if (this.boss.isValid()) {
+					if(this.player.isValid())	{
+						ExecutePackSkills(this.list, this.boss, this.player);
+						return;
+					} else	{
+						if(this.boss instanceof Creature)	{
+							if(((Creature) this.boss).getTarget() instanceof Player)	{
+								this.player = (Player)((Creature)this.boss).getTarget();
+								ExecutePackSkills(this.list, this.boss, this.player);
+								return;
+							}
+						} 
+						List<Entity> list = this.boss.getNearbyEntities(16, 8, 16);
+						
+						for(Entity e : list)	{
+							if(e instanceof Player)	{
+								if(this.boss instanceof Creature) ((Creature)this.boss).setTarget((LivingEntity)e);
+								ExecutePackSkills(this.list, this.boss, (Player)e);
+								return;
+							}
+						}
+						this.cancel();
+					}
+				}
+			}
+		}
 	}
 }

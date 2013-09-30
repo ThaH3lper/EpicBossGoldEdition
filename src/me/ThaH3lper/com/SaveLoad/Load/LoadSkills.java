@@ -14,13 +14,15 @@ public class LoadSkills{
 		{
 			for(String s: sl.getCustomConfig().getConfigurationSection("").getKeys(false))
 			{
+				int cooldown = sl.getCustomConfig().getInt(s + ".Cooldown");
+				
 				if(sl.getCustomConfig().getStringList(s + ".Skills") != null)
 				{
 					String cmdName = s;
 					String file = sl.thefile.getName();
 					List<String> list = sl.getCustomConfig().getStringList(s + ".Skills");
 					
-					EpicBoss.plugin.listSkills.add(new EpicSkill(cmdName, file, list));
+					EpicBoss.plugin.listSkills.add(new EpicSkill(cmdName, file, list, cooldown));
 				}
 			}
 		}
