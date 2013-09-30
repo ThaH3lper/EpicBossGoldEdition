@@ -1,18 +1,22 @@
 package me.ThaH3lper.com.SkillsCollection;
 
+import java.util.HashMap;
+
 import me.ThaH3lper.com.EpicBoss;
 import me.ThaH3lper.com.Libs.FireWorkEffect;
+import me.ThaH3lper.com.Mobs.EpicMobs;
+import me.ThaH3lper.com.Mobs.MobCommon;
 import me.ThaH3lper.com.Skills.EpicSkill;
 import me.ThaH3lper.com.Skills.SkillHandler;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 public class SkillPack {
 	
-	//- pack name hp= chance
+	//- pack name hp= chance 
 	static FireWorkEffect effect = new FireWorkEffect();
-
 	
 	public static void ExecutePack(LivingEntity l, String skill, Player p)
 	{
@@ -23,9 +27,13 @@ public class SkillPack {
 			if(SkillHandler.CheckHealth(base[base.length-2], l, skill))
 			{
 				EpicSkill es = getPack(base[1]);
+				
 				if(es != null)
 				{
-					SkillHandler.ExecuteSkills(es.skills, l, p);
+					if(onCooldown(l, base[1])) return;
+	
+					SkillHandler.ExecutePackSkills(es.skills, l, p);
+					setCooldown(l, base[1], es.cooldown);
 				}
 			}
 		}
@@ -40,4 +48,38 @@ public class SkillPack {
 		}
 		return null;
 	}
+	public static boolean onCooldown(LivingEntity l, String skill)	{
+		EpicMobs em = MobCommon.getEpicMob(l);
+		if(em == null) return true;
+		
+		Long next = em.cooldowns.get(skill + l.getEntityId());
+		if(next != null)	{
+			if (next > System.currentTimeMillis()) {
+                return true;
+			}
+		}
+		
+		return false;
+	}
+	public static void setCooldown(LivingEntity l, String skill, int cooldown)	{
+		EpicMobs em = MobCommon.getEpicMob(l);
+		if(em == null) return;
+		
+		if(cooldown > 0)	{
+			em.cooldowns.put(skill + l.getEntityId(), System.currentTimeMillis() + (int)(cooldown * 1000));
+		} else	{
+			em.cooldowns.remove(skill + l.getEntityId());
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+

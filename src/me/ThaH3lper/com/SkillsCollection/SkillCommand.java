@@ -1,6 +1,5 @@
 package me.ThaH3lper.com.SkillsCollection;
 
-import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
