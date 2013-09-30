@@ -114,7 +114,7 @@ public class LoadSetup {
 		}
 	}
 	
-	public void Update()
+	public static void Update()
 	{
 		LoadMobList.SaveMobsList();
 		TimerHandler.SaveAllTimers();

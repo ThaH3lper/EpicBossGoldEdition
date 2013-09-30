@@ -1,6 +1,8 @@
 package me.ThaH3lper.com.Clock;
 
 import me.ThaH3lper.com.EpicBoss;
+import me.ThaH3lper.com.SaveLoad.LoadSetup;
+import me.ThaH3lper.com.SaveLoad.SaveLoad;
 import me.ThaH3lper.com.SaveLoad.Load.LoadMobList;
 import me.ThaH3lper.com.Timer.Timer;
 
@@ -20,8 +22,11 @@ public class Clock implements Runnable{
 		}
 		if(timer >= EpicBoss.plugin.loadSetup.timerupdate)
 		{
+			boolean spawned = false;
 			for(Timer t : EpicBoss.plugin.allTimers)
-				t.tick(EpicBoss.plugin.loadSetup.timerupdate);
+				spawned = t.tick(EpicBoss.plugin.loadSetup.timerupdate);
+			if(spawned)
+				LoadSetup.Update();
 			timer = 0;
 		}
 		if(walk>= EpicBoss.plugin.loadSetup.walkupdate)
