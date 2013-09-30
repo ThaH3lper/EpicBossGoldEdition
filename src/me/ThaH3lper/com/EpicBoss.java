@@ -15,6 +15,7 @@ import me.ThaH3lper.com.Listener.LeashEvent;
 import me.ThaH3lper.com.Listener.MobDrop;
 import me.ThaH3lper.com.Listener.MobHit;
 import me.ThaH3lper.com.Listener.MobSkill;
+import me.ThaH3lper.com.Listener.MobSpawn;
 import me.ThaH3lper.com.Listener.PlayerPickUp;
 import me.ThaH3lper.com.Listener.SignPlace;
 import me.ThaH3lper.com.Listener.SlimeSplit;
@@ -92,5 +93,6 @@ public class EpicBoss extends JavaPlugin{
 		manager.registerEvents(new LeashEvent(), this);
 		manager.registerEvents(new MobSkill(), this);
 		manager.registerEvents(new SlimeSplit(), this);
+		manager.registerEvents(new MobSpawn(), this);
 	}
 }

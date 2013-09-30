@@ -11,11 +11,11 @@ import me.ThaH3lper.com.Mobs.MobCommon;
 
 public class EpicSpawning {
 
-	String cmdName;
-	EpicMobs em;
-	int priority;
-	float chance;
-	List<World> worlds = new ArrayList<World>();
+	public String cmdName;
+	public EpicMobs em;
+	public int priority;
+	public float chance;
+	public List<World> worlds = new ArrayList<World>();
 	
 	public EpicSpawning(String cmdName, String mobname, int priority, float chance, String world)
 	{

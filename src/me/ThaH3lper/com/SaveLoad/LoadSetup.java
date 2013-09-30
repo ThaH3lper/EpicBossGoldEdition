@@ -12,6 +12,7 @@ import me.ThaH3lper.com.SaveLoad.Load.LoadLoots;
 import me.ThaH3lper.com.SaveLoad.Load.LoadMobList;
 import me.ThaH3lper.com.SaveLoad.Load.LoadMobs;
 import me.ThaH3lper.com.SaveLoad.Load.LoadSkills;
+import me.ThaH3lper.com.SaveLoad.Load.LoadSpawning;
 import me.ThaH3lper.com.SaveLoad.Load.LoadTimers;
 import me.ThaH3lper.com.Timer.TimerHandler;
 
@@ -83,6 +84,7 @@ public class LoadSetup {
 		LoadLoots.LoadAllLoot();
 		LoadSkills.LoadAllSkills();
 		LoadTimers.LoadAllTimers();
+		LoadSpawning.LoadSpawnings();
 		TimerHandler.LoadAllTimers();
 		loadSettings();
 		

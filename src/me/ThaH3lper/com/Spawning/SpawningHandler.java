@@ -1,7 +1,43 @@
 package me.ThaH3lper.com.Spawning;
 
-public class SpawingHandler {
+import me.ThaH3lper.com.EpicBoss;
+import me.ThaH3lper.com.Mobs.MobHandler;
+
+import org.bukkit.entity.Animals;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Monster;
+
+public class SpawningHandler {
 	
+	public static boolean Spawn(LivingEntity l)
+	{
+		String type = "";
+		if(l instanceof Monster) type = "Monster";
+		else if(l instanceof Animals) type = "Animal";
+		
+		for(EpicSpawning es : EpicBoss.plugin.listSpawning)
+		{
+			boolean b = cheack(l, es, type);
+			if(b) return true;
+		}
+		return false;
+	}
+	
+	public static boolean cheack(LivingEntity l, EpicSpawning es, String type)
+	{
+		if(!es.worlds.contains(l.getWorld()))
+			return false;
+		if(!getType(es.em.Mobtype).equals(type))
+			return false;
+		if(es.chance >= EpicBoss.r.nextFloat())
+		{
+			MobHandler.SpawnMob(es.em.cmdName, l.getLocation());
+			return true;
+		}
+		return false;
+		
+			
+	}
 	public static String getType(String name)
 	{
 		//Monsters
