@@ -5,7 +5,6 @@ import me.ThaH3lper.com.Skills.SkillHandler;
 
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.util.Vector;
 
 public class SkillLightning {
 	//- lightning radius:damage =HP Chance

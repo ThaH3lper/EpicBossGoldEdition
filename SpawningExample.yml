@@ -1,0 +1,5 @@
+spawning1:
+  Mobname: boss1
+  Worlds: world1, world2
+  Chance: 1
+  Priority: 10

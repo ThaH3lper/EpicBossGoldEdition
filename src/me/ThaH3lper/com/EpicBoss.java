@@ -24,6 +24,7 @@ import me.ThaH3lper.com.Mobs.EpicMobsList;
 import me.ThaH3lper.com.SaveLoad.LoadSetup;
 import me.ThaH3lper.com.SaveLoad.SaveLoad;
 import me.ThaH3lper.com.Skills.EpicSkill;
+import me.ThaH3lper.com.Spawning.EpicSpawning;
 import me.ThaH3lper.com.Timer.EpicTimer;
 import me.ThaH3lper.com.Timer.Timer;
 
@@ -41,13 +42,14 @@ public class EpicBoss extends JavaPlugin{
 	public String menu = ChatColor.GREEN + "oOo_-_-_-_-_oOo"  + ChatColor.GOLD + ChatColor.BOLD + " EpicBoss Gold Edition " + ChatColor.GREEN + "oOo_-_-_-_-_oO";
 	public static Random r = new Random();
 	
-	public SaveLoad mobs, items, loots, skills, savelist, settings, timers;
+	public SaveLoad mobs, items, loots, skills, savelist, settings, timers, spawning;
 	public LoadSetup loadSetup;
 	public List<SaveLoad> saveItemList;
 	public List<SaveLoad> saveMobList;
 	public List<SaveLoad> saveLootList;
 	public List<SaveLoad> saveSkillList;
 	public List<SaveLoad> saveTimerList;
+	public List<SaveLoad> saveSpawningList;
 	
 	public List<LivingEntity> allMobs = new ArrayList<LivingEntity>();
 	public List<Timer> allTimers = new ArrayList<Timer>();
@@ -62,6 +64,7 @@ public class EpicBoss extends JavaPlugin{
 	public List<EpicLocation> listLoc = new ArrayList<EpicLocation>();
 	public List<EpicSkill> listSkills = new ArrayList<EpicSkill>();
 	public List<EpicTimer> listTimers = new ArrayList<EpicTimer>();
+	public List<EpicSpawning> listSpawning = new ArrayList<EpicSpawning>();
 	
 	@Override
 	public void onDisable() {

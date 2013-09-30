@@ -17,7 +17,7 @@ import me.ThaH3lper.com.Timer.TimerHandler;
 
 public class LoadSetup {
 
-	public File[] MobFiles, ItemFiles, LootFiles, SkillFiles, TimerFiles;
+	public File[] MobFiles, ItemFiles, LootFiles, SkillFiles, TimerFiles, SpawningFiles;
 	
 	EpicBoss eb;
 	public int Inteval = 5 * 60;
@@ -34,6 +34,7 @@ public class LoadSetup {
 		EpicBoss.plugin.saveLootList.clear();
 		EpicBoss.plugin.saveSkillList.clear();
 		EpicBoss.plugin.saveTimerList.clear();
+		EpicBoss.plugin.saveSpawningList.clear();
 		
 		EpicBoss.plugin.allMobs.clear();
 		EpicBoss.plugin.allTimers.clear();
@@ -48,6 +49,7 @@ public class LoadSetup {
 		EpicBoss.plugin.listLoc.clear();
 		EpicBoss.plugin.listSkills.clear();
 		EpicBoss.plugin.listTimers.clear();
+		EpicBoss.plugin.listSpawning.clear();
 	}
 	public void LoadAll(boolean msg)
 	{
@@ -57,6 +59,7 @@ public class LoadSetup {
 		EpicBoss.plugin.loots = new SaveLoad(EpicBoss.plugin, "LootExample.yml", "Loots");
 		EpicBoss.plugin.skills = new SaveLoad(EpicBoss.plugin, "SkillExample.yml", "Skills");
 		EpicBoss.plugin.timers = new SaveLoad(EpicBoss.plugin, "TimerExample.yml", "Timers");
+		EpicBoss.plugin.spawning = new SaveLoad(EpicBoss.plugin, "SpawningExample.yml", "RandomSpawning");
 		EpicBoss.plugin.settings = new SaveLoad(EpicBoss.plugin, "Settings.yml");
 		
 		MobFiles = new File(eb.mobs.thefile.getParent()).listFiles();
@@ -64,12 +67,14 @@ public class LoadSetup {
 		LootFiles = new File(eb.loots.thefile.getParent()).listFiles();
 		SkillFiles = new File(eb.skills.thefile.getParent()).listFiles();
 		TimerFiles = new File(eb.timers.thefile.getParent()).listFiles();
+		SpawningFiles = new File(eb.spawning.thefile.getParent()).listFiles();
 		
 		eb.saveItemList = SaveLoadHandler.getSaveLoad(ItemFiles, "Items");
 		eb.saveMobList = SaveLoadHandler.getSaveLoad(MobFiles, "Mobs");
 		eb.saveLootList = SaveLoadHandler.getSaveLoad(LootFiles, "Loots");
 		eb.saveSkillList = SaveLoadHandler.getSaveLoad(SkillFiles, "Skills");
 		eb.saveTimerList = SaveLoadHandler.getSaveLoad(TimerFiles, "Timers");
+		eb.saveSpawningList = SaveLoadHandler.getSaveLoad(SpawningFiles, "RandomSpawning");
 		
 		LoadItems.LoadAllItems();
 		LoadMobs.LoadAllMobs();
@@ -89,6 +94,7 @@ public class LoadSetup {
 			EpicBoss.plugin.logger.info(SaveLoadHandler.getList("\u001B[31mLootFiles:\u001B[0m ", LootFiles));
 			EpicBoss.plugin.logger.info(SaveLoadHandler.getList("\u001B[31mSkillFiles:\u001B[0m ", SkillFiles));
 			EpicBoss.plugin.logger.info(SaveLoadHandler.getList("\u001B[31mTimerFiles:\u001B[0m ", TimerFiles));
+			EpicBoss.plugin.logger.info(SaveLoadHandler.getList("\u001B[31mSpawningFiles:\u001B[0m ", SpawningFiles));
 			EpicBoss.plugin.logger.info("-----------------------------------------------");
 		}
 	}
