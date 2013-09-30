@@ -7,12 +7,16 @@ import me.ThaH3lper.com.Mobs.MobCommon;
 import me.ThaH3lper.com.SkillsCollection.SkillBossFirework;
 import me.ThaH3lper.com.SkillsCollection.SkillCommand;
 import me.ThaH3lper.com.SkillsCollection.SkillHeal;
+import me.ThaH3lper.com.SkillsCollection.SkillLightning;
 import me.ThaH3lper.com.SkillsCollection.SkillMsg;
 import me.ThaH3lper.com.SkillsCollection.SkillPack;
 import me.ThaH3lper.com.SkillsCollection.SkillPlayerFirework;
+import me.ThaH3lper.com.SkillsCollection.SkillPotion;
 import me.ThaH3lper.com.SkillsCollection.SkillPotionBoss;
 import me.ThaH3lper.com.SkillsCollection.SkillRadiousFirework;
+import me.ThaH3lper.com.SkillsCollection.SkillRadiusCommand;
 import me.ThaH3lper.com.SkillsCollection.SkillSwarm;
+import me.ThaH3lper.com.SkillsCollection.SkillThrow;
 
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -47,8 +51,16 @@ public class SkillHandler {
 				SkillHeal.ExecuteHeal(l, skill, p);
 			if(split[0].equals("cmd"))
 				SkillCommand.ExecuteCommand(l, skill, p);
+			if((split[0].equals("radiouscmd")) || (split[0].equals("radiuscmd")))
+				SkillRadiusCommand.ExecuteCommand(l, skill);
+			if(split[0].equals("potion"))
+				SkillPotion.ExecutePotion(l, skill, p);
 			if(split[0].equals("potionboss"))
 				SkillPotionBoss.ExecutePotionBoss(l, skill, p);
+			if(split[0].equals("throw"))
+				SkillThrow.ExecuteThrow(l, skill, p);
+			if(split[0].equals("lightning"))
+				SkillLightning.ExecuteLightning(l, skill, p);
 			if(split[0].equals("swarm"))
 				SkillSwarm.ExecuteSwarm(l, skill, p);
 		}
