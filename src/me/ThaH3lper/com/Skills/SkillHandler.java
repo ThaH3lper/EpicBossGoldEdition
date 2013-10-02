@@ -16,6 +16,10 @@ import me.ThaH3lper.com.SkillsCollection.SkillPotion;
 import me.ThaH3lper.com.SkillsCollection.SkillPotionBoss;
 import me.ThaH3lper.com.SkillsCollection.SkillRadiousFirework;
 import me.ThaH3lper.com.SkillsCollection.SkillRadiusCommand;
+import me.ThaH3lper.com.SkillsCollection.SkillShootFireball;
+import me.ThaH3lper.com.SkillsCollection.SkillShootPotion;
+import me.ThaH3lper.com.SkillsCollection.SkillShootProjectile;
+import me.ThaH3lper.com.SkillsCollection.SkillShootSkull;
 import me.ThaH3lper.com.SkillsCollection.SkillSwarm;
 import me.ThaH3lper.com.SkillsCollection.SkillThrow;
 
@@ -94,6 +98,14 @@ public class SkillHandler {
 				SkillThrow.ExecuteThrow(l, skill, p);
 			if(split[0].equals("lightning"))
 				SkillLightning.ExecuteLightning(l, skill, p);
+			if(split[0].equals("shootfireball"))
+				SkillShootFireball.ExecuteShoot(l, skill, p);
+			if((split[0].equals("shootprojectile")) || (split[0].equals("projectile")))
+				SkillShootProjectile.ExecuteShoot(l, skill, p);
+			if((split[0].equals("shootpotion")) || (split[0].equals("throwpotion")))
+				SkillShootPotion.ExecuteShoot(l, skill, p);
+			if(split[0].equals("shootskull"))
+				SkillShootSkull.ExecuteShoot(l, skill, p);
 			if(split[0].equals("swarm"))
 				SkillSwarm.ExecuteSwarm(l, skill, p);
 		}

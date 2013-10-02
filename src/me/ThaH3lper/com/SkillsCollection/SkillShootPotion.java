@@ -1,0 +1,50 @@
+package me.ThaH3lper.com.SkillsCollection;
+
+import me.ThaH3lper.com.EpicBoss;
+import me.ThaH3lper.com.Skills.SkillHandler;
+
+import org.bukkit.Material;
+import org.bukkit.entity.Projectile;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.ThrownPotion;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+
+public class SkillShootPotion {
+	
+	// Shoots a splash potion
+	// shootpotion type:duration:level:velocity
+		
+	public static void ExecuteShoot(LivingEntity l, String skill, Player player)
+	{
+		String[] base = skill.split(" ");
+		String[] data = base[1].split(":");
+		float chance = Float.parseFloat(base[base.length-1]);
+		if(EpicBoss.r.nextFloat() < chance)
+		{
+			if(SkillHandler.CheckHealth(base[base.length-2], l, skill))
+			{	
+            	String potiontype = data[0];
+            	int potiontime = Integer.parseInt(data[1]);
+            	int potionlvl = Integer.parseInt(data[2]);
+				float velocity = Float.parseFloat(data[3]);
+            		            	
+            	ItemStack potion = new ItemStack(Material.POTION);
+            	PotionMeta pm = (PotionMeta) potion.getItemMeta();
+            	pm.addCustomEffect(new PotionEffect(PotionEffectType.getByName(potiontype), potiontime, potionlvl), true);
+            	potion.setItemMeta(pm);
+            	
+            	Projectile projectile = l.launchProjectile(ThrownPotion.class);
+            	((ThrownPotion)projectile).setItem(potion);
+			
+                projectile.setVelocity(l.getLocation().getDirection().multiply(velocity));
+				projectile.setBounce(false);
+				projectile.setShooter(l);
+			}
+		}
+		
+	}
+}

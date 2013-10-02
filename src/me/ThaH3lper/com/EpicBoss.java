@@ -18,6 +18,7 @@ import me.ThaH3lper.com.Listener.MobSkill;
 import me.ThaH3lper.com.Listener.MobSpawn;
 import me.ThaH3lper.com.Listener.PlayerPickUp;
 import me.ThaH3lper.com.Listener.SignPlace;
+import me.ThaH3lper.com.Listener.SkillShootProjectileListener;
 import me.ThaH3lper.com.Listener.SlimeSplit;
 import me.ThaH3lper.com.Location.EpicLocation;
 import me.ThaH3lper.com.Mobs.EpicMobs;
@@ -94,5 +95,6 @@ public class EpicBoss extends JavaPlugin{
 		manager.registerEvents(new MobSkill(), this);
 		manager.registerEvents(new SlimeSplit(), this);
 		manager.registerEvents(new MobSpawn(), this);
+		manager.registerEvents(new SkillShootProjectileListener(), this);
 	}
 }
