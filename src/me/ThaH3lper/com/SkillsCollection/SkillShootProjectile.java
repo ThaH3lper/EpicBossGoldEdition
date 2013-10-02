@@ -54,7 +54,6 @@ public class SkillShootProjectile {
 				projectile.setBounce(false);
 				projectile.setShooter(l);
 				projectile.setMetadata("EpicBossProjectile", new FixedMetadataValue(EpicBoss.plugin, new ProjectileData(damage)));
-				EpicBoss.plugin.logger.info("Projectile Fired!");
 			}
 		}
 	}
