@@ -1,11 +1,16 @@
 package me.ThaH3lper.com.SkillsCollection;
 
+import java.lang.reflect.Array;
+
 import me.ThaH3lper.com.EpicBoss;
+import me.ThaH3lper.com.SaveLoad.SaveLoadHandler;
 import me.ThaH3lper.com.Skills.SkillHandler;
 
 import org.bukkit.Effect;
+import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_6_R3.CraftWorld;
 import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Creature;
 import org.bukkit.entity.Egg;
 import org.bukkit.entity.EnderPearl;
 import org.bukkit.entity.Projectile;
@@ -13,12 +18,15 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Snowball;
 import org.bukkit.metadata.FixedMetadataValue;
+import org.bukkit.util.Vector;
 
 public class SkillShootProjectile {
 	
 	// Shoots a projectile
 	// projectile type:damage:velocity
 	// type can be arrow, snowball, egg, or enderpearl
+	
+	private static Class<? extends Projectile> projectileClass;
 			
 	public static void ExecuteShoot(LivingEntity l, String skill, Player player)
 	{
@@ -29,28 +37,40 @@ public class SkillShootProjectile {
 		{
 			if(SkillHandler.CheckHealth(base[base.length-2], l, skill))
 			{
-				String projectileType = data[0];
-				int damage = Integer.parseInt(data[1]);
-				float velocity = Float.parseFloat(data[2]);
+				String projectileType = (Array.getLength(data) > 0) ? data[0] : "arrow";
+				int damage = (Array.getLength(data) > 1) ? Integer.parseInt(data[1]) : 1;
+				float velocity = (Array.getLength(data) > 2) ? Float.parseFloat(data[2]) : 1;
+				int maxdistance = (Array.getLength(data) > 3) ? Integer.parseInt(data[3]) : 64;
 	
+				if(l.getLocation().distance(player.getLocation()) > maxdistance) return;
+				
 				Projectile projectile;
                 if (projectileType.equalsIgnoreCase("arrow")) {
-                    projectile = l.launchProjectile(Arrow.class);
+                	projectileClass = Arrow.class;
                     l.getWorld().playEffect(l.getLocation(), Effect.BOW_FIRE, 0);
 	            } else if (projectileType.equalsIgnoreCase("snowball")) {
-	            	projectile = l.launchProjectile(Snowball.class);
+	            	projectileClass = Snowball.class;
 	            	l.getWorld().playEffect(l.getLocation(), Effect.BOW_FIRE, 0);
 	            } else if (projectileType.equalsIgnoreCase("egg")) {
-	            	projectile = l.launchProjectile(Egg.class);
+	            	projectileClass = Egg.class;
 	            	l.getWorld().playEffect(l.getLocation(), Effect.BOW_FIRE, 0);
 	            } else if (projectileType.equalsIgnoreCase("enderpearl")) {
-	            	projectile = l.launchProjectile(EnderPearl.class);
+	            	projectileClass = EnderPearl.class;
 	            	((CraftWorld) l.getLocation().getWorld()).getHandle().makeSound(l.getLocation().getX(), l.getLocation().getY(), l.getLocation().getZ(), "mob.endermen.portal", 1, (float)0.5);
 	            } else	{
-	            	projectile = l.launchProjectile(Arrow.class);
+	            	projectileClass = Arrow.class;
 	            }
 			
-                projectile.setVelocity(l.getLocation().getDirection().multiply(velocity));
+                if((l instanceof Creature) && ((Creature)l).getTarget() == player)	{
+                    projectile = l.launchProjectile(projectileClass);
+                	projectile.setVelocity(l.getLocation().getDirection().multiply(velocity));
+                	EpicBoss.plugin.logger.info("Fired!");
+                }	else	{
+                	projectile = l.launchProjectile(projectileClass);
+                	Vector facing = player.getLocation().toVector().subtract(l.getLocation().toVector()).normalize().multiply(velocity);                
+                	projectile.setVelocity(facing);
+                }
+            
 				projectile.setBounce(false);
 				projectile.setShooter(l);
 				projectile.setMetadata("EpicBossProjectile", new FixedMetadataValue(EpicBoss.plugin, new ProjectileData(damage)));

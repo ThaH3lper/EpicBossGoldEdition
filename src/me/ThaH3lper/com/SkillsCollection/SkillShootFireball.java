@@ -4,9 +4,12 @@ import me.ThaH3lper.com.EpicBoss;
 import me.ThaH3lper.com.Skills.SkillHandler;
 
 import org.bukkit.Effect;
+import org.bukkit.Location;
+import org.bukkit.entity.Creature;
 import org.bukkit.entity.Fireball;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.util.Vector;
 
 public class SkillShootFireball {
 	
@@ -26,9 +29,25 @@ public class SkillShootFireball {
 				int fireticks = Integer.parseInt(data[2]);
 	
 				Fireball fireball;
-				fireball = l.launchProjectile(Fireball.class);
-				l.getWorld().playEffect(l.getLocation(), Effect.GHAST_SHOOT, 0);
+								
+				if((l instanceof Creature) && ((Creature)l).getTarget() == player)	{
+					fireball = l.launchProjectile(Fireball.class);
+				} else	{
+					Vector facing = player.getLocation().toVector().subtract(l.getLocation().toVector()).normalize();
+					
+					Location loc = l.getLocation().clone();
+	                
+	                double yaw = Math.toDegrees(Math.atan2(-facing.getX(), facing.getZ()));
+	                double pitch = Math.toDegrees(-Math.asin(facing.getY()));                               
+	                loc.setYaw((float)yaw);
+	                loc.setPitch((float)pitch);
+	                
+	                loc.add(facing.multiply(2));
+	                
+	                fireball = l.getLocation().getWorld().spawn(loc, Fireball.class);
+				}
 				
+				l.getWorld().playEffect(l.getLocation(), Effect.GHAST_SHOOT, 0);
 				fireball.setBounce(false);
 				fireball.setIsIncendiary(incendiary);
 				fireball.setFireTicks(fireticks);

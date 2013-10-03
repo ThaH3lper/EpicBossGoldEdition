@@ -14,6 +14,7 @@ import me.ThaH3lper.com.SkillsCollection.SkillPack;
 import me.ThaH3lper.com.SkillsCollection.SkillPlayerFirework;
 import me.ThaH3lper.com.SkillsCollection.SkillPotion;
 import me.ThaH3lper.com.SkillsCollection.SkillPotionBoss;
+import me.ThaH3lper.com.SkillsCollection.SkillPull;
 import me.ThaH3lper.com.SkillsCollection.SkillRadiousFirework;
 import me.ThaH3lper.com.SkillsCollection.SkillRadiusCommand;
 import me.ThaH3lper.com.SkillsCollection.SkillShootFireball;
@@ -21,6 +22,7 @@ import me.ThaH3lper.com.SkillsCollection.SkillShootPotion;
 import me.ThaH3lper.com.SkillsCollection.SkillShootProjectile;
 import me.ThaH3lper.com.SkillsCollection.SkillShootSkull;
 import me.ThaH3lper.com.SkillsCollection.SkillSwarm;
+import me.ThaH3lper.com.SkillsCollection.SkillTeleport;
 import me.ThaH3lper.com.SkillsCollection.SkillThrow;
 
 import org.bukkit.Bukkit;
@@ -108,6 +110,10 @@ public class SkillHandler {
 				SkillShootSkull.ExecuteShoot(l, skill, p);
 			if(split[0].equals("swarm"))
 				SkillSwarm.ExecuteSwarm(l, skill, p);
+			if(split[0].equals("teleport"))
+				SkillTeleport.ExecuteTeleport(l, skill, p);
+			if(split[0].equals("pull"))
+				SkillPull.ExecutePull(l, skill, p);
 		}
 	}
 	
