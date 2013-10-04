@@ -7,6 +7,7 @@ import me.ThaH3lper.com.EpicBoss;
 import me.ThaH3lper.com.Mobs.MobCommon;
 import me.ThaH3lper.com.SkillsCollection.SkillBossFirework;
 import me.ThaH3lper.com.SkillsCollection.SkillCommand;
+import me.ThaH3lper.com.SkillsCollection.SkillConsume;
 import me.ThaH3lper.com.SkillsCollection.SkillHeal;
 import me.ThaH3lper.com.SkillsCollection.SkillLightning;
 import me.ThaH3lper.com.SkillsCollection.SkillMsg;
@@ -114,6 +115,8 @@ public class SkillHandler {
 				SkillTeleport.ExecuteTeleport(l, skill, p);
 			if(split[0].equals("pull"))
 				SkillPull.ExecutePull(l, skill, p);
+			if(split[0].equals("consume"))
+				SkillConsume.ExecuteConsume(l, skill);
 		}
 	}
 	
