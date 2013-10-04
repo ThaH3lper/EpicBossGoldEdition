@@ -31,7 +31,7 @@ public class SkillCommand {
 				if(msg.contains("$player_x"))
 				{
 					if(player!=null)	{	
-						if(msg.substring(msg.indexOf("$player_x")+9, msg.indexOf("$player_x")+10).matches("%"))	{
+						if(msg.contains("$player_x%"))	{
 							Rpattern = Pattern.compile("player_x%([0-9]+)");
 							Rmatcher = Rpattern.matcher(msg);
 							Rmatcher.find();
@@ -48,7 +48,7 @@ public class SkillCommand {
 				if(msg.contains("$player_y"))
 				{
 					if(player!=null)	{	
-						if(msg.substring(msg.indexOf("$player_y")+9, msg.indexOf("$player_y")+10).matches("%"))	{
+						if(msg.contains("$player_y%"))	{
 							Rpattern = Pattern.compile("player_y%([0-9]+)");
 							Rmatcher = Rpattern.matcher(msg);
 							Rmatcher.find();
@@ -65,7 +65,7 @@ public class SkillCommand {
 				if(msg.contains("$player_z"))
 				{
 					if(player!=null)	{	
-						if(msg.substring(msg.indexOf("$player_z")+9, msg.indexOf("$player_z")+10).matches("%"))	{
+						if(msg.contains("$player_z%"))	{
 							Rpattern = Pattern.compile("player_z%([0-9]+)");
 							Rmatcher = Rpattern.matcher(msg);
 							Rmatcher.find();
@@ -86,7 +86,7 @@ public class SkillCommand {
 				}
 								
 				if(msg.contains("$boss_x"))	{
-					if(msg.substring(msg.indexOf("$boss_x")+7, msg.indexOf("$boss_x")+8).matches("%"))	{
+					if(msg.contains("$boss_x%"))	{
 						Rpattern = Pattern.compile("boss_x%([0-9]+)");
 						Rmatcher = Rpattern.matcher(msg);
 						Rmatcher.find();
@@ -100,7 +100,7 @@ public class SkillCommand {
 				}
 				
 				if(msg.contains("$boss_y"))	{
-					if(msg.substring(msg.indexOf("$boss_y")+7, msg.indexOf("$boss_y")+8).matches("%"))	{
+					if(msg.contains("$boss_y%"))	{
 						Rpattern = Pattern.compile("boss_y%([0-9]+)");
 						Rmatcher = Rpattern.matcher(msg);
 						Rmatcher.find();
@@ -114,7 +114,7 @@ public class SkillCommand {
 				}
 				
 				if(msg.contains("$boss_z"))	{
-					if(msg.substring(msg.indexOf("$boss_z")+7, msg.indexOf("$boss_z")+8).matches("%"))	{
+					if(msg.contains("$boss_z%"))	{
 						Rpattern = Pattern.compile("boss_z%([0-9]+)");
 						Rmatcher = Rpattern.matcher(msg);
 						Rmatcher.find();
