@@ -10,6 +10,7 @@ import me.ThaH3lper.com.Skills.SkillHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -33,9 +34,16 @@ public class MobSkill implements Listener{
 		{
 			Bukkit.broadcastMessage(mv.asString());
 		}
-		
-		if(e.getDamager() instanceof Player)
+		 
+		if(e.getDamager() instanceof Player)	{
 			SkillHandler.ExecuteSkills(em.skills, l, (Player) e.getDamager());
+		} else	{
+			if(e.getDamager() instanceof Projectile)	{
+				if(((Projectile)e.getDamager()).getShooter() instanceof Player)	{
+					SkillHandler.ExecuteSkills(em.skills, l, (Player) ((Projectile)e.getDamager()).getShooter());
+				}
+			}
+		}	
 	}
 
 }
