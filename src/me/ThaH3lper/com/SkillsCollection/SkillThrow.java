@@ -19,7 +19,7 @@ public class SkillThrow {
 		if(EpicBoss.r.nextFloat() < chance)
 		{
 			if(SkillHandler.CheckHealth(base[base.length-2], l, skill))
-			{
+			{				
 				int radius = Integer.parseInt(data[0]);
 				float strength = Float.parseFloat(data[1]);
 				float strengthY = Float.parseFloat(data[2]);
@@ -37,6 +37,7 @@ public class SkillThrow {
 						p.setVelocity(V);
 					}
 				} else	{
+					if(player == null) return;
 					Pv = player.getLocation().toVector();
 					V = Pv.subtract(Bv).normalize().multiply((strength / 10));
 					V.setY((strengthY / 10));

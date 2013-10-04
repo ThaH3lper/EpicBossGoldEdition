@@ -37,12 +37,15 @@ public class MobSkill implements Listener{
 		 
 		if(e.getDamager() instanceof Player)	{
 			SkillHandler.ExecuteSkills(em.skills, l, (Player) e.getDamager());
+			return;
 		} else	{
 			if(e.getDamager() instanceof Projectile)	{
 				if(((Projectile)e.getDamager()).getShooter() instanceof Player)	{
 					SkillHandler.ExecuteSkills(em.skills, l, (Player) ((Projectile)e.getDamager()).getShooter());
+					return;
 				}
 			}
+			SkillHandler.ExecuteSkills(em.skills, l, null);
 		}	
 	}
 

@@ -30,6 +30,7 @@ public class SkillShootProjectile {
 			
 	public static void ExecuteShoot(LivingEntity l, String skill, Player player)
 	{
+		if(player == null) return;
 		String[] base = skill.split(" ");
 		String[] data = base[1].split(":");
 		float chance = Float.parseFloat(base[base.length-1]);

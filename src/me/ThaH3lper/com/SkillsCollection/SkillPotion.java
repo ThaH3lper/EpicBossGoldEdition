@@ -35,6 +35,7 @@ public class SkillPotion {
 							p.addPotionEffect(pe);
 						}
 					} else	{
+						if(player == null) return;
 						player.addPotionEffect(pe);
 					}
 				}

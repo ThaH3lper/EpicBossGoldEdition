@@ -12,6 +12,7 @@ public class SkillTeleport {
 		
 	public static void ExecuteTeleport(LivingEntity l, String skill, Player player)
 	{
+		if(player == null) return;
 		String[] base = skill.split(" ");
 
 		float chance = Float.parseFloat(base[base.length-1]);
