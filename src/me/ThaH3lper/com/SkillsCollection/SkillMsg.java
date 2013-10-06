@@ -1,6 +1,8 @@
 package me.ThaH3lper.com.SkillsCollection;
 
 import me.ThaH3lper.com.EpicBoss;
+import me.ThaH3lper.com.Mobs.EpicMobs;
+import me.ThaH3lper.com.Mobs.MobCommon;
 import me.ThaH3lper.com.Skills.SkillHandler;
 
 import org.bukkit.Bukkit;
@@ -32,8 +34,14 @@ public class SkillMsg {
 					if(player!=null)
 						msg = msg.replace("$player", player.getName());
 				}
-				if(msg.contains("$boss"))
-					msg = msg.replace("$boss", l.getCustomName());
+				
+				if(msg.contains("$bosshp"))
+					msg = msg.replace("$bosshp", String.valueOf(l.getHealth()));
+				
+				if(msg.contains("$boss"))	{
+					EpicMobs em = MobCommon.getEpicMob(l);
+					msg = msg.replace("$boss", em.Display);
+				}
 					
 				if(radious != 0)
 				{

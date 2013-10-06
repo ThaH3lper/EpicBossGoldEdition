@@ -7,6 +7,7 @@ import me.ThaH3lper.com.EpicBoss;
 import me.ThaH3lper.com.Mobs.MobCommon;
 import me.ThaH3lper.com.SkillsCollection.SkillBossFirework;
 import me.ThaH3lper.com.SkillsCollection.SkillCommand;
+import me.ThaH3lper.com.SkillsCollection.SkillConsume;
 import me.ThaH3lper.com.SkillsCollection.SkillHeal;
 import me.ThaH3lper.com.SkillsCollection.SkillLightning;
 import me.ThaH3lper.com.SkillsCollection.SkillMsg;
@@ -14,9 +15,15 @@ import me.ThaH3lper.com.SkillsCollection.SkillPack;
 import me.ThaH3lper.com.SkillsCollection.SkillPlayerFirework;
 import me.ThaH3lper.com.SkillsCollection.SkillPotion;
 import me.ThaH3lper.com.SkillsCollection.SkillPotionBoss;
+import me.ThaH3lper.com.SkillsCollection.SkillPull;
 import me.ThaH3lper.com.SkillsCollection.SkillRadiousFirework;
 import me.ThaH3lper.com.SkillsCollection.SkillRadiusCommand;
+import me.ThaH3lper.com.SkillsCollection.SkillShootFireball;
+import me.ThaH3lper.com.SkillsCollection.SkillShootPotion;
+import me.ThaH3lper.com.SkillsCollection.SkillShootProjectile;
+import me.ThaH3lper.com.SkillsCollection.SkillShootSkull;
 import me.ThaH3lper.com.SkillsCollection.SkillSwarm;
+import me.ThaH3lper.com.SkillsCollection.SkillTeleport;
 import me.ThaH3lper.com.SkillsCollection.SkillThrow;
 
 import org.bukkit.Bukkit;
@@ -94,8 +101,22 @@ public class SkillHandler {
 				SkillThrow.ExecuteThrow(l, skill, p);
 			if(split[0].equals("lightning"))
 				SkillLightning.ExecuteLightning(l, skill, p);
+			if(split[0].equals("shootfireball"))
+				SkillShootFireball.ExecuteShoot(l, skill, p);
+			if((split[0].equals("shootprojectile")) || (split[0].equals("projectile")))
+				SkillShootProjectile.ExecuteShoot(l, skill, p);
+			if((split[0].equals("shootpotion")) || (split[0].equals("throwpotion")))
+				SkillShootPotion.ExecuteShoot(l, skill, p);
+			if(split[0].equals("shootskull"))
+				SkillShootSkull.ExecuteShoot(l, skill, p);
 			if(split[0].equals("swarm"))
 				SkillSwarm.ExecuteSwarm(l, skill, p);
+			if(split[0].equals("teleport"))
+				SkillTeleport.ExecuteTeleport(l, skill, p);
+			if(split[0].equals("pull"))
+				SkillPull.ExecutePull(l, skill, p);
+			if(split[0].equals("consume"))
+				SkillConsume.ExecuteConsume(l, skill);
 		}
 	}
 	
