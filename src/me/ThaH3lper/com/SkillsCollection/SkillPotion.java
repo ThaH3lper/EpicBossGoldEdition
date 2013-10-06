@@ -26,7 +26,7 @@ public class SkillPotion {
 				int pDuration = Integer.parseInt(data[2]);
 				int pLevel = Integer.parseInt(data[3]);
 
-				PotionEffect pe = new PotionEffect(PotionEffectType.getByName(pType), pDuration * 20, pLevel-1);
+				PotionEffect pe = new PotionEffect(PotionEffectType.getByName(pType), pDuration, pLevel-1);
 				if(pe != null)	{
 					if(radius > 0)
 					{

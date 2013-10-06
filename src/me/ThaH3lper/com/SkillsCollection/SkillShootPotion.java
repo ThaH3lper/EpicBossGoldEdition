@@ -40,9 +40,7 @@ public class SkillShootPotion {
             	
             	Projectile projectile = l.launchProjectile(ThrownPotion.class);
             	((ThrownPotion)projectile).setItem(potion);
-            	
-            	
-			
+
                 projectile.setVelocity(l.getLocation().getDirection().multiply(velocity));
 				projectile.setBounce(false);
 				projectile.setShooter(l);

@@ -4,6 +4,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import me.ThaH3lper.com.EpicBoss;
+import me.ThaH3lper.com.Mobs.EpicMobs;
+import me.ThaH3lper.com.Mobs.MobCommon;
 import me.ThaH3lper.com.Skills.SkillHandler;
 
 import org.bukkit.Bukkit;
@@ -127,9 +129,11 @@ public class SkillCommand {
 					}	
 				}
 				
-				if(msg.contains("$boss"))
-					msg = msg.replace("$boss", l.getCustomName());
-				
+				if(msg.contains("$boss"))	{
+					EpicMobs em = MobCommon.getEpicMob(l);
+					msg = msg.replace("$boss", em.Display);
+				}
+					
 				if(msg.contains("$world"))
 					msg = msg.replace("$world", l.getWorld().getName());
 				
