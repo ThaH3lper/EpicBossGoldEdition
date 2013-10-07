@@ -1,11 +1,15 @@
 package me.ThaH3lper.com.Commands;
 
 import me.ThaH3lper.com.EpicBoss;
+import me.ThaH3lper.com.SaveLoad.LoadSetup;
+import me.ThaH3lper.com.SaveLoad.SaveLoad;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 public class CommandInput implements CommandExecutor{
@@ -29,6 +33,19 @@ public class CommandInput implements CommandExecutor{
 		}
 		else if(args.length > 0)
 		{
+			if(args[0].equalsIgnoreCase("update"))
+			{
+				Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "Update");
+				for(LivingEntity l : EpicBoss.plugin.allMobs)
+				{
+					Bukkit.broadcastMessage(ChatColor.GREEN + l.getUniqueId().toString());
+				}
+			}
+			if(args[0].equalsIgnoreCase("update1"))
+			{
+				Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "Update1");
+				LoadSetup.Update();
+			}
 			if(args[0].equalsIgnoreCase("item"))
 			{
 				if(sender instanceof Player)

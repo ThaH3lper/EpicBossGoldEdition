@@ -1,14 +1,31 @@
 package me.ThaH3lper.com.Spawning;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import me.ThaH3lper.com.EpicBoss;
 import me.ThaH3lper.com.Mobs.MobHandler;
 
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Animals;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
 
 public class SpawningHandler {
+	public static List<LivingEntity> templist = new ArrayList<LivingEntity>();
 	
+	public static void updateSpawning()
+	{
+		for(LivingEntity l : templist)
+		{
+			if(l != null)
+			{
+				SpawningHandler.Spawn(l);
+			}
+		}
+		templist.clear();
+	}
 	public static boolean Spawn(LivingEntity l)
 	{
 		String type = "";
@@ -31,7 +48,8 @@ public class SpawningHandler {
 			return false;
 		if(es.chance >= EpicBoss.r.nextFloat())
 		{
-			MobHandler.SpawnMob(es.em.cmdName, l.getLocation());
+			LivingEntity liv = MobHandler.SpawnMob(es.em.cmdName, l.getLocation());
+			liv.setRemoveWhenFarAway(true);
 			return true;
 		}
 		return false;

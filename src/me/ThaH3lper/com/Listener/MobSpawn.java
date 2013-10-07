@@ -16,13 +16,10 @@ public class MobSpawn implements Listener{
 	public void MobSpawnEvent(CreatureSpawnEvent e)
 	{
 		//nee a better way for a spawn event :S
-		/*Bukkit.broadcastMessage(e.isCancelled() + "");
 		if(e.getSpawnReason() != SpawnReason.CUSTOM && e.getEntity() != null)
 		{
-			Bukkit.broadcastMessage(ChatColor.RED + "" + e.getEntity().getType());
-			//boolean b = SpawningHandler.Spawn(e.getEntity());
-			//if(b) e.getEntity().remove();
-		}*/
+			SpawningHandler.templist.add(e.getEntity());
+		}
 	}
 
 }
