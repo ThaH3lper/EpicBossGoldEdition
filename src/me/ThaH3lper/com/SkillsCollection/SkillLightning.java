@@ -29,6 +29,7 @@ public class SkillLightning {
 						p.damage(damage);
 					}
 				} else	{
+					if(player == null) return;
 					player.getLocation().getWorld().strikeLightningEffect(player.getLocation());
 					player.damage(damage);
 				}

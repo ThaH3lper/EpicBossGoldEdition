@@ -19,27 +19,36 @@ public class SkillThrow {
 		if(EpicBoss.r.nextFloat() < chance)
 		{
 			if(SkillHandler.CheckHealth(base[base.length-2], l, skill))
-			{
+			{				
 				int radius = Integer.parseInt(data[0]);
-				float strength = Float.parseFloat(data[1]);
-				float strengthY = Float.parseFloat(data[2]);
+				float strength = Float.parseFloat(data[1]) / 10;
+				float strengthY = Float.parseFloat(data[2]) / 10;
 				Vector Bv = l.getLocation().toVector();
-				Vector Pv, V;
+				Vector V;
 				
 				if(radius > 0)
 				{
 					for(Player p : SkillHandler.getRadious(l, radius))
 					{
-						Pv = p.getLocation().toVector();
-						V = Pv.subtract(Bv).normalize().multiply((strength / 10));
-						V.setY((strengthY / 10));
+						V = p.getLocation().toVector().subtract(l.getLocation().toVector()).normalize().multiply(strength);
+						
+						if(strength == 0)	{
+							V.setY(strengthY);
+						} else	{
+							V.setY(strengthY + V.getY());
+						}
 
 						p.setVelocity(V);
 					}
 				} else	{
-					Pv = player.getLocation().toVector();
-					V = Pv.subtract(Bv).normalize().multiply((strength / 10));
-					V.setY((strengthY / 10));
+					if(player == null) return;
+					V = player.getLocation().toVector().subtract(l.getLocation().toVector()).normalize().multiply(strength);
+					
+					if(strength == 0)	{
+						V.setY(strengthY);
+					} else	{
+						V.setY(strengthY + V.getY());
+					}
 					
 					player.setVelocity(V);
 				}
