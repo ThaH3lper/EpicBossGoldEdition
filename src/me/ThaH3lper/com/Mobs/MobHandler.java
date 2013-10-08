@@ -106,7 +106,7 @@ public class MobHandler {
 		
 		MobAttribute.setKnockBackResistance(l, em.knock);
 		
-		EpicBoss.plugin.allMobs.add(l);
+		EpicBoss.plugin.allMobs.add(l.getUniqueId());
 		SkillHandler.ExecuteSkills(em.skills, l, null);
 		return l;		
 	}

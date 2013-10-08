@@ -16,7 +16,7 @@ public class SlimeSplit implements Listener{
 		if(!(e.getEntity() instanceof LivingEntity))
 			return;
 		LivingEntity l = (LivingEntity) e.getEntity();
-		if(!EpicBoss.plugin.allMobs.contains(l))
+		if(!EpicBoss.plugin.allMobs.contains(l.getUniqueId()))
 			return;
 		e.setCount(0);
 	}

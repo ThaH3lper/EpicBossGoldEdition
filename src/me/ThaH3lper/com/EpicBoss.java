@@ -3,6 +3,7 @@ package me.ThaH3lper.com;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 import me.ThaH3lper.com.Clock.Clock;
@@ -30,7 +31,9 @@ import me.ThaH3lper.com.Spawning.EpicSpawning;
 import me.ThaH3lper.com.Timer.EpicTimer;
 import me.ThaH3lper.com.Timer.Timer;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.World;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.plugin.PluginDescriptionFile;
@@ -45,7 +48,6 @@ public class EpicBoss extends JavaPlugin{
 	public static Random r = new Random();
 	
 	public SaveLoad mobs, items, loots, skills, savelist, settings, timers, spawning;
-	public LoadSetup loadSetup;
 	public List<SaveLoad> saveItemList;
 	public List<SaveLoad> saveMobList;
 	public List<SaveLoad> saveLootList;
@@ -53,7 +55,7 @@ public class EpicBoss extends JavaPlugin{
 	public List<SaveLoad> saveTimerList;
 	public List<SaveLoad> saveSpawningList;
 	
-	public List<LivingEntity> allMobs = new ArrayList<LivingEntity>();
+	public List<UUID> allMobs = new ArrayList<UUID>();
 	public List<Timer> allTimers = new ArrayList<Timer>();
 	public List<FairDrops> listFair = new ArrayList<FairDrops>();
 	public List<TempPlayer> listTempPlayer = new ArrayList<TempPlayer>();
@@ -70,7 +72,7 @@ public class EpicBoss extends JavaPlugin{
 	
 	@Override
 	public void onDisable() {
-		loadSetup.SaveAll();
+		LoadSetup.SaveAll();
 		PluginDescriptionFile pdfFile = this.getDescription();
 		logger.info(pdfFile.getName() +  " Has Been Disabled!");	
 
@@ -80,10 +82,10 @@ public class EpicBoss extends JavaPlugin{
 		PluginDescriptionFile pdfFile = this.getDescription();
 		logger.info(pdfFile.getName()+ " " + pdfFile.getVersion() +  " Has Been Enabled!");
 		
-		plugin = this;		
+		plugin = this;
+		LoadSetup.LoadAll(true);
 		getCommand("EpicBoss").setExecutor(new CommandInput());
 		
-		loadSetup = new LoadSetup(this);
 		this.getServer().getScheduler().scheduleSyncRepeatingTask(this, new Clock(), 0L, 20L);
 		
 		PluginManager manager = this.getServer().getPluginManager();
@@ -96,5 +98,19 @@ public class EpicBoss extends JavaPlugin{
 		manager.registerEvents(new SlimeSplit(), this);
 		manager.registerEvents(new MobSpawn(), this);
 		manager.registerEvents(new SkillShootProjectileListener(), this);
+	}
+	
+	public List<LivingEntity> getMobsAll()
+	{
+		List<LivingEntity> list = new ArrayList<LivingEntity>();
+		for(World w : Bukkit.getWorlds())
+		{
+			for(LivingEntity e : w.getLivingEntities())
+			{
+				if(allMobs.contains(e.getUniqueId()))
+					list.add(e);
+			}
+		}
+		return list;
 	}
 }

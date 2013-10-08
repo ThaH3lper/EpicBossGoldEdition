@@ -15,20 +15,20 @@ public class Clock implements Runnable{
 		save++;
 		timer++;
 		walk++;
-		if(save >= EpicBoss.plugin.loadSetup.Inteval)
+		if(save >= LoadSetup.Inteval)
 		{
 			executeSave();
 			save = 0;
 		}
-		if(timer >= EpicBoss.plugin.loadSetup.timerupdate)
+		if(timer >= LoadSetup.timerupdate)
 		{
 			for(Timer t : EpicBoss.plugin.allTimers)
-				t.tick(EpicBoss.plugin.loadSetup.timerupdate);
+				t.tick(LoadSetup.timerupdate);
 			
-			LoadSetup.Update();
+			//LoadSetup.Update();
 			timer = 0;
 		}
-		if(walk>= EpicBoss.plugin.loadSetup.walkupdate)
+		if(walk>= LoadSetup.walkupdate)
 		{
 			for(Timer t : EpicBoss.plugin.allTimers)
 				t.WalkCheck();
@@ -39,7 +39,7 @@ public class Clock implements Runnable{
 	
 	public static void executeSave()
 	{
-		EpicBoss.plugin.loadSetup.SaveAll();
-		EpicBoss.plugin.allMobs = LoadMobList.Refresh(EpicBoss.plugin.allMobs);
+		LoadSetup.SaveAll();
+		EpicBoss.plugin.allMobs = LoadMobList.Refresh(EpicBoss.plugin.getMobsAll());
 	}
 }

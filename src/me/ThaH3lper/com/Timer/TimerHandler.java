@@ -49,8 +49,8 @@ public class TimerHandler {
 			String time = t.clock + "";
 			//Mobs
 			String mobs = "";
-			for(LivingEntity l : t.mobs)
-				mobs += l.getUniqueId() + ",";
+			for(UUID c : t.mobs)
+				mobs += c + ",";
 			if(mobs.equals(""))
 				mobs = "null";
 		
@@ -76,18 +76,18 @@ public class TimerHandler {
 			int time = Integer.parseInt(parts[1]);
 			
 			//Mob
-			List<LivingEntity> mobslist = new ArrayList<LivingEntity>();
+			List<UUID> mobslist = new ArrayList<UUID>();
 			String[] mobs = parts[2].split(",");
 			for(String m : mobs)
 			{
 				if(!m.equals("") && !m.equals("null"))
 				{
-					for(LivingEntity l : EpicBoss.plugin.allMobs)
+					for(LivingEntity l : EpicBoss.plugin.getMobsAll())
 					{
 						UUID i = UUID.fromString(m);
 						if(l.getUniqueId().compareTo(i) == 0)
 						{
-							mobslist.add(l);
+							mobslist.add(l.getUniqueId());
 						}
 					}
 				}

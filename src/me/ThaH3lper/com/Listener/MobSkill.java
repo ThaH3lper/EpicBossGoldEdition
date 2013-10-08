@@ -25,15 +25,9 @@ public class MobSkill implements Listener{
 		if(!(e.getEntity() instanceof LivingEntity))
 			return;
 		LivingEntity l = (LivingEntity) e.getEntity();
-		if(!EpicBoss.plugin.allMobs.contains(l))
+		if(!EpicBoss.plugin.allMobs.contains(l.getUniqueId()))
 			return;
 		EpicMobs em = MobCommon.getEpicMob(l);
-		
-		List<MetadataValue> list = l.getMetadata("skill");
-		for(MetadataValue mv : list)
-		{
-			Bukkit.broadcastMessage(mv.asString());
-		}
 		 
 		if(e.getDamager() instanceof Player)	{
 			SkillHandler.ExecuteSkills(em.skills, l, (Player) e.getDamager());
@@ -48,5 +42,4 @@ public class MobSkill implements Listener{
 			SkillHandler.ExecuteSkills(em.skills, l, null);
 		}	
 	}
-
 }

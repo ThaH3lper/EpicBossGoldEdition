@@ -201,7 +201,7 @@ public class SkillHandler {
         public void run() {
 			if (!cancelled) {
 				if (this.boss.isValid()) {
-					if(this.player.isValid())	{
+					if(this.player != null && this.player.isValid())	{
 						ExecutePackSkills(this.list, this.boss, this.player);
 						return;
 					} else	{

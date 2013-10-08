@@ -33,19 +33,6 @@ public class CommandInput implements CommandExecutor{
 		}
 		else if(args.length > 0)
 		{
-			if(args[0].equalsIgnoreCase("update"))
-			{
-				Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "Update");
-				for(LivingEntity l : EpicBoss.plugin.allMobs)
-				{
-					Bukkit.broadcastMessage(ChatColor.GREEN + l.getUniqueId().toString());
-				}
-			}
-			if(args[0].equalsIgnoreCase("update1"))
-			{
-				Bukkit.broadcastMessage(ChatColor.LIGHT_PURPLE + "Update1");
-				LoadSetup.Update();
-			}
 			if(args[0].equalsIgnoreCase("item"))
 			{
 				if(sender instanceof Player)
@@ -86,17 +73,17 @@ public class CommandInput implements CommandExecutor{
 					Player p = (Player) sender;
 					if(p.hasPermission("epicboss.admin") || p.hasPermission("epicboss.reload"))
 					{
-						EpicBoss.plugin.loadSetup.SaveAll();
-						EpicBoss.plugin.loadSetup.ResetAll();
-						EpicBoss.plugin.loadSetup.LoadAll(false);
+						LoadSetup.SaveAll();
+						LoadSetup.ResetAll();
+						LoadSetup.LoadAll(false);
 						sender.sendMessage(ChatColor.GREEN + "EpicBoss Reloded!");
 					}		
 				}
 				else
 				{
-					EpicBoss.plugin.loadSetup.SaveAll();
-					EpicBoss.plugin.loadSetup.ResetAll();
-					EpicBoss.plugin.loadSetup.LoadAll(true);
+					LoadSetup.SaveAll();
+					LoadSetup.ResetAll();
+					LoadSetup.LoadAll(true);
 					sender.sendMessage(ChatColor.GREEN + "EpicBoss Reloded!");
 				}
 			}

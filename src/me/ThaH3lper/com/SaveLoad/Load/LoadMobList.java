@@ -20,14 +20,14 @@ public class LoadMobList {
 		if(EpicBoss.plugin.savelist.getCustomConfig().contains("Mobslist"))
 		{
 			String s = EpicBoss.plugin.savelist.getCustomConfig().getString("Mobslist");
-			List<LivingEntity> list = StringToList(s);
+			List<UUID> list = StringToList(s);
 			EpicBoss.plugin.allMobs = list;
 		}
 	}
 	
 	public static void SaveMobsList()
 	{
-		String s = ListToString(EpicBoss.plugin.allMobs);
+		String s = ListToString(EpicBoss.plugin.getMobsAll());
 		EpicBoss.plugin.savelist.getCustomConfig().set("Mobslist", s);
 		EpicBoss.plugin.savelist.saveCustomConfig();
 	}
@@ -45,9 +45,9 @@ public class LoadMobList {
 		return s;
 	}
 	
-	public static List<LivingEntity> StringToList(String s)
+	public static List<UUID> StringToList(String s)
 	{
-		List<LivingEntity> list = new ArrayList<LivingEntity>();
+		List<UUID> list = new ArrayList<UUID>();
 		String[] parts = s.split(",");
 		for(String ent : parts)
 		{
@@ -64,7 +64,7 @@ public class LoadMobList {
 						if(l.getUniqueId().compareTo(i) == 0)
 						{
 							l = MobCommon.setMeta(l, data[1], "cmdname");
-							list.add(l);
+							list.add(l.getUniqueId());
 						}
 					}
 				}
@@ -73,13 +73,13 @@ public class LoadMobList {
 		return list;
 	}
 	
-	public static List<LivingEntity> Refresh(List<LivingEntity> list)
+	public static List<UUID> Refresh(List<LivingEntity> list)
 	{
-		List<LivingEntity> newList = new ArrayList<LivingEntity>();
+		List<UUID> newList = new ArrayList<UUID>();
 		for(LivingEntity i : list)
 		{
 			if(i.isDead() != true)
-				newList.add(i);
+				newList.add(i.getUniqueId());
 		}
 		return newList;
 	}
