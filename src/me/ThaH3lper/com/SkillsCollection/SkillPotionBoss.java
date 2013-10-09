@@ -21,7 +21,11 @@ public class SkillPotionBoss {
 		{
 			if(SkillHandler.CheckHealth(base[base.length-2], l, skill))
 			{
-				PotionEffect pe = new PotionEffect(PotionEffectType.getByName(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2]) - 1);
+				String pType = data[0];
+				float pDuration = Float.parseFloat(data[1]);
+				int pLevel = Integer.parseInt(data[2]) - 1;
+				
+				PotionEffect pe = new PotionEffect(PotionEffectType.getByName(pType), (int) (pDuration * 20), pLevel);
 				l.addPotionEffect(pe);
 			}
 		}

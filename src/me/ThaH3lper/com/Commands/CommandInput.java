@@ -1,11 +1,15 @@
 package me.ThaH3lper.com.Commands;
 
 import me.ThaH3lper.com.EpicBoss;
+import me.ThaH3lper.com.SaveLoad.LoadSetup;
+import me.ThaH3lper.com.SaveLoad.SaveLoad;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 public class CommandInput implements CommandExecutor{
@@ -69,17 +73,17 @@ public class CommandInput implements CommandExecutor{
 					Player p = (Player) sender;
 					if(p.hasPermission("epicboss.admin") || p.hasPermission("epicboss.reload"))
 					{
-						EpicBoss.plugin.loadSetup.SaveAll();
-						EpicBoss.plugin.loadSetup.ResetAll();
-						EpicBoss.plugin.loadSetup.LoadAll(false);
+						LoadSetup.SaveAll();
+						LoadSetup.ResetAll();
+						LoadSetup.LoadAll(false);
 						sender.sendMessage(ChatColor.GREEN + "EpicBoss Reloded!");
 					}		
 				}
 				else
 				{
-					EpicBoss.plugin.loadSetup.SaveAll();
-					EpicBoss.plugin.loadSetup.ResetAll();
-					EpicBoss.plugin.loadSetup.LoadAll(true);
+					LoadSetup.SaveAll();
+					LoadSetup.ResetAll();
+					LoadSetup.LoadAll(true);
 					sender.sendMessage(ChatColor.GREEN + "EpicBoss Reloded!");
 				}
 			}

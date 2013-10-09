@@ -36,7 +36,7 @@ public class MobDrop implements Listener{
 	public void MobDeathEvent(EntityDeathEvent e)
 	{
 		LivingEntity l = e.getEntity();
-		if(EpicBoss.plugin.allMobs.contains(l))
+		if(EpicBoss.plugin.allMobs.contains(l.getUniqueId()))
 		{
 			removeTimer(l);
 			e.getDrops().clear();
@@ -64,7 +64,6 @@ public class MobDrop implements Listener{
 					if(fd.loot.size() > i)
 					{
 						EpicNormal en = fd.loot.get(i);
-						//Bukkit.broadcastMessage(en.cmdName + " " + fp.damage + " " + fp.player.getName() + " " + i);
 						if(en != null)
 						{
 							for(ItemStack is : en.getDrops())
@@ -133,8 +132,8 @@ public class MobDrop implements Listener{
 	{
 		for(Timer t : EpicBoss.plugin.allTimers)
 		{
-			if(t.mobs.contains(l))
-				t.mobs.remove(l);
+			if(t.mobs.contains(l.getUniqueId()))
+				t.mobs.remove(l.getUniqueId());
 		}
 	}
 	

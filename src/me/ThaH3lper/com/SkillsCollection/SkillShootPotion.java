@@ -28,14 +28,14 @@ public class SkillShootPotion {
 		{
 			if(SkillHandler.CheckHealth(base[base.length-2], l, skill))
 			{	
-            	String potiontype = data[0];
-            	int potiontime = Integer.parseInt(data[1]);
-            	int potionlvl = Integer.parseInt(data[2]);
+            	String pType = data[0];
+            	float pDuration = Float.parseFloat(data[1]);
+            	int pLevel = Integer.parseInt(data[2]) - 1;
 				float velocity = Float.parseFloat(data[3]);
             		            	
             	ItemStack potion = new ItemStack(Material.POTION);
             	PotionMeta pm = (PotionMeta) potion.getItemMeta();
-            	pm.addCustomEffect(new PotionEffect(PotionEffectType.getByName(potiontype), potiontime, potionlvl), true);
+            	pm.addCustomEffect(new PotionEffect(PotionEffectType.getByName(pType), (int) (pDuration * 20), pLevel), true);
             	potion.setItemMeta(pm);
             	
             	Projectile projectile = l.launchProjectile(ThrownPotion.class);

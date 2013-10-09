@@ -1,11 +1,18 @@
 package me.ThaH3lper.com.SaveLoad;
 
+import java.io.EOFException;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.v1_6_R3.org.bouncycastle.LICENSE;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;
+import org.bukkit.entity.LivingEntity;
 
 import me.ThaH3lper.com.EpicBoss;
+import me.ThaH3lper.com.Mobs.MobCommon;
 import me.ThaH3lper.com.SaveLoad.Load.LoadItems;
 import me.ThaH3lper.com.SaveLoad.Load.LoadLocation;
 import me.ThaH3lper.com.SaveLoad.Load.LoadLoots;
@@ -18,17 +25,11 @@ import me.ThaH3lper.com.Timer.TimerHandler;
 
 public class LoadSetup {
 
-	public File[] MobFiles, ItemFiles, LootFiles, SkillFiles, TimerFiles, SpawningFiles;
+	public static File[] MobFiles, ItemFiles, LootFiles, SkillFiles, TimerFiles, SpawningFiles;
 	
-	EpicBoss eb;
-	public int Inteval = 5 * 60;
-	public int timerupdate, walkupdate;
-	public LoadSetup(EpicBoss eb)
-	{
-		this.eb = eb;
-		LoadAll(true);
-	}
-	public void ResetAll()
+	public static int Inteval = 5 * 60;
+	public static int timerupdate, walkupdate;
+	public static void ResetAll()
 	{
 		EpicBoss.plugin.saveItemList.clear();
 		EpicBoss.plugin.saveMobList.clear();
@@ -52,7 +53,7 @@ public class LoadSetup {
 		EpicBoss.plugin.listTimers.clear();
 		EpicBoss.plugin.listSpawning.clear();
 	}
-	public void LoadAll(boolean msg)
+	public static void LoadAll(boolean msg)
 	{
 		EpicBoss.plugin.savelist = new SaveLoad(EpicBoss.plugin, "SaveList.yml", "Save");
 		EpicBoss.plugin.mobs = new SaveLoad(EpicBoss.plugin, "MobsExample.yml", "Mobs");
@@ -63,19 +64,19 @@ public class LoadSetup {
 		EpicBoss.plugin.spawning = new SaveLoad(EpicBoss.plugin, "SpawningExample.yml", "RandomSpawning");
 		EpicBoss.plugin.settings = new SaveLoad(EpicBoss.plugin, "Settings.yml");
 		
-		MobFiles = new File(eb.mobs.thefile.getParent()).listFiles();
-		ItemFiles = new File(eb.items.thefile.getParent()).listFiles();
-		LootFiles = new File(eb.loots.thefile.getParent()).listFiles();
-		SkillFiles = new File(eb.skills.thefile.getParent()).listFiles();
-		TimerFiles = new File(eb.timers.thefile.getParent()).listFiles();
-		SpawningFiles = new File(eb.spawning.thefile.getParent()).listFiles();
+		MobFiles = new File(EpicBoss.plugin.mobs.thefile.getParent()).listFiles();
+		ItemFiles = new File(EpicBoss.plugin.items.thefile.getParent()).listFiles();
+		LootFiles = new File(EpicBoss.plugin.loots.thefile.getParent()).listFiles();
+		SkillFiles = new File(EpicBoss.plugin.skills.thefile.getParent()).listFiles();
+		TimerFiles = new File(EpicBoss.plugin.timers.thefile.getParent()).listFiles();
+		SpawningFiles = new File(EpicBoss.plugin.spawning.thefile.getParent()).listFiles();
 		
-		eb.saveItemList = SaveLoadHandler.getSaveLoad(ItemFiles, "Items");
-		eb.saveMobList = SaveLoadHandler.getSaveLoad(MobFiles, "Mobs");
-		eb.saveLootList = SaveLoadHandler.getSaveLoad(LootFiles, "Loots");
-		eb.saveSkillList = SaveLoadHandler.getSaveLoad(SkillFiles, "Skills");
-		eb.saveTimerList = SaveLoadHandler.getSaveLoad(TimerFiles, "Timers");
-		eb.saveSpawningList = SaveLoadHandler.getSaveLoad(SpawningFiles, "RandomSpawning");
+		EpicBoss.plugin.saveItemList = SaveLoadHandler.getSaveLoad(ItemFiles, "Items");
+		EpicBoss.plugin.saveMobList = SaveLoadHandler.getSaveLoad(MobFiles, "Mobs");
+		EpicBoss.plugin.saveLootList = SaveLoadHandler.getSaveLoad(LootFiles, "Loots");
+		EpicBoss.plugin.saveSkillList = SaveLoadHandler.getSaveLoad(SkillFiles, "Skills");
+		EpicBoss.plugin.saveTimerList = SaveLoadHandler.getSaveLoad(TimerFiles, "Timers");
+		EpicBoss.plugin.saveSpawningList = SaveLoadHandler.getSaveLoad(SpawningFiles, "RandomSpawning");
 		
 		LoadItems.LoadAllItems();
 		LoadMobs.LoadAllMobs();
@@ -101,7 +102,7 @@ public class LoadSetup {
 		}
 	}
 	
-	public void SaveAll()
+	public static void SaveAll()
 	{
 		Bukkit.savePlayers();
 		for(World w : Bukkit.getWorlds())
@@ -111,18 +112,18 @@ public class LoadSetup {
 		TimerHandler.SaveAllTimers();
 	}
 	
-	public void loadSettings()
+	public static void loadSettings()
 	{
-		if(eb.settings.getCustomConfig().contains("SaveInterval"))
+		if(EpicBoss.plugin.settings.getCustomConfig().contains("SaveInterval"))
 		{
-			int i = eb.settings.getCustomConfig().getInt("SaveInterval");
+			int i = EpicBoss.plugin.settings.getCustomConfig().getInt("SaveInterval");
 			Inteval = i * 60;
-			timerupdate = eb.settings.getCustomConfig().getInt("TimerUpdate");
-			walkupdate = eb.settings.getCustomConfig().getInt("WalkUpdate");
+			timerupdate = EpicBoss.plugin.settings.getCustomConfig().getInt("TimerUpdate");
+			walkupdate = EpicBoss.plugin.settings.getCustomConfig().getInt("WalkUpdate");
 		}
 	}
 	
-	public static void Update()
+	/*public static void Update()
 	{
 		LoadMobList.SaveMobsList();
 		TimerHandler.SaveAllTimers();
@@ -132,7 +133,7 @@ public class LoadSetup {
 		
 		LoadMobList.LoadMobsList();
 		TimerHandler.LoadAllTimers();
-	}
+	}*/
 	
 
 		

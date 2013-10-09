@@ -2,6 +2,7 @@ package me.ThaH3lper.com.Timer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import me.ThaH3lper.com.EpicBoss;
 import me.ThaH3lper.com.Location.EpicLocation;
@@ -15,7 +16,7 @@ import org.bukkit.entity.LivingEntity;
 public class Timer {
 
 	public EpicTimer et;
-	public List<LivingEntity> mobs = new ArrayList<LivingEntity>();
+	public List<UUID> mobs = new ArrayList<UUID>();
 	public EpicLocation el;
 	public Location loc;
 	public Sign sign;
@@ -55,7 +56,7 @@ public class Timer {
 			if(mobs.size() < et.amount)
 			{
 				el.LoadChunk();
-				mobs.add(MobHandler.SpawnMob(et.bosses.get(EpicBoss.r.nextInt(et.bosses.size())).cmdName, el.location));
+				mobs.add(MobHandler.SpawnMob(et.bosses.get(EpicBoss.r.nextInt(et.bosses.size())).cmdName, el.location).getUniqueId());
 				return true;
 			}
 		}
@@ -65,10 +66,13 @@ public class Timer {
 	{
 		if(et.walk == 0)
 			return;
-		for(LivingEntity l : mobs)
+		for(LivingEntity l : loc.getWorld().getLivingEntities())
 		{
-			if(el.location.distance(l.getLocation()) >= et.walk)
-				l.teleport(el.location);
+			if(mobs.contains(l.getUniqueId()))
+			{
+				if(el.location.distance(l.getLocation()) >= et.walk)
+					l.teleport(el.location);
+			}
 		}
 
 	}

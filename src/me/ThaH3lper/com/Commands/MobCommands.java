@@ -61,7 +61,7 @@ public class MobCommands {
 			}
 			else if(args[1].equalsIgnoreCase("killall"))
 			{
-				for(LivingEntity l : EpicBoss.plugin.allMobs)
+				for(LivingEntity l : EpicBoss.plugin.getMobsAll())
 				{
 					l.remove();
 				}
@@ -119,7 +119,7 @@ public class MobCommands {
 			if(args[1].equalsIgnoreCase("kill"))
 			{
 				String s = ChatColor.GREEN + "Mobs Killed: ";
-				for(LivingEntity l : EpicBoss.plugin.allMobs)
+				for(LivingEntity l : EpicBoss.plugin.getMobsAll())
 				{
 					EpicMobs em = MobCommon.getEpicMob(l);
 					if(em != null)						
