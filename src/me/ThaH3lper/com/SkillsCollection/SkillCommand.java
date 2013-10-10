@@ -9,6 +9,7 @@ import me.ThaH3lper.com.Mobs.MobCommon;
 import me.ThaH3lper.com.Skills.SkillHandler;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
@@ -131,7 +132,7 @@ public class SkillCommand {
 				
 				if(msg.contains("$boss"))	{
 					EpicMobs em = MobCommon.getEpicMob(l);
-					msg = msg.replace("$boss", em.Display);
+					msg = msg.replace("$boss", ChatColor.translateAlternateColorCodes('&', em.Display));
 				}
 					
 				if(msg.contains("$world"))

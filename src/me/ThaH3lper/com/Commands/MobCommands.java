@@ -1,5 +1,7 @@
 package me.ThaH3lper.com.Commands;
 
+import java.util.ArrayList;
+
 import me.ThaH3lper.com.EpicBoss;
 import me.ThaH3lper.com.Location.EpicLocation;
 import me.ThaH3lper.com.Location.LocationHandler;
@@ -16,6 +18,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class MobCommands {
 	
@@ -63,6 +67,8 @@ public class MobCommands {
 			{
 				for(LivingEntity l : EpicBoss.plugin.getMobsAll())
 				{
+					EntityDeathEvent event = new EntityDeathEvent(l, new ArrayList<ItemStack>(0));
+					EpicBoss.plugin.getServer().getPluginManager().callEvent(event);
 					l.remove();
 				}
 				sender.sendMessage(ChatColor.GREEN + "All bosses removed!");
@@ -126,6 +132,8 @@ public class MobCommands {
 					{
 						if(em.cmdName.contains(args[2]))
 						{
+							EntityDeathEvent event = new EntityDeathEvent(l, new ArrayList<ItemStack>(0));
+							EpicBoss.plugin.getServer().getPluginManager().callEvent(event);
 							l.remove();
 						}
 					}

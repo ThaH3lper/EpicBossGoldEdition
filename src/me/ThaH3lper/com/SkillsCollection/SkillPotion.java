@@ -23,10 +23,10 @@ public class SkillPotion {
 			{
 				int radius = Integer.parseInt(data[0]);
 				String pType = data[1];
-				int pDuration = Integer.parseInt(data[2]);
-				int pLevel = Integer.parseInt(data[3]);
-
-				PotionEffect pe = new PotionEffect(PotionEffectType.getByName(pType), pDuration * 20, pLevel-1);
+				float pDuration = Float.parseFloat(data[2]);
+				int pLevel = Integer.parseInt(data[3]) - 1;
+				
+				PotionEffect pe = new PotionEffect(PotionEffectType.getByName(pType), (int) (pDuration * 20), pLevel);
 				if(pe != null)	{
 					if(radius > 0)
 					{

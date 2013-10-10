@@ -4,10 +4,12 @@ import me.ThaH3lper.com.EpicBoss;
 import me.ThaH3lper.com.Libs.MobAttribute;
 import me.ThaH3lper.com.Skills.SkillHandler;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Horse;
+import org.bukkit.entity.Horse.Color;
 import org.bukkit.entity.Horse.Style;
 import org.bukkit.entity.Horse.Variant;
 import org.bukkit.entity.LivingEntity;
@@ -150,6 +152,8 @@ public class MobHandler {
 			e.setStyle(Style.valueOf(em.horseStyle));
 		if(em.horseType != null)
 			e.setVariant(Variant.valueOf(em.horseType));
+		if(em.horseColor != null)
+			e.setColor(Color.valueOf(em.horseColor));
 		return l;
 	}
 }

@@ -28,7 +28,6 @@ public class SkillMsg {
 			{
 				int radious = Integer.parseInt(data[0]);
 				
-				msg = ChatColor.translateAlternateColorCodes('&', msg);
 				if(msg.contains("$player"))
 				{
 					if(player!=null)
@@ -42,6 +41,8 @@ public class SkillMsg {
 					EpicMobs em = MobCommon.getEpicMob(l);
 					msg = msg.replace("$boss", em.Display);
 				}
+				
+				msg = ChatColor.translateAlternateColorCodes('&', msg);
 					
 				if(radious != 0)
 				{
