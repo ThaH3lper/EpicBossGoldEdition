@@ -10,7 +10,7 @@ import org.bukkit.potion.PotionEffectType;
 
 public class SkillPotion {
 	
-	// - potion radius:type:duraction:lvl <HP chance(float)
+	// - potion radius:type:duraction:lvl <HP chance
 	
 	public static void ExecutePotion(LivingEntity l, String skill, Player player)
 	{

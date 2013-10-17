@@ -33,7 +33,7 @@ public class LoadMobs{
 					String Display = sl.getCustomConfig().getString(s + ".Display");
 					double health = sl.getCustomConfig().getDouble(s + ".Health");
 					double damage = sl.getCustomConfig().getDouble(s + ".Damage");
-					boolean showhp = sl.getCustomConfig().getBoolean(s + ".ShowHealh");
+					boolean showhp = sl.getCustomConfig().getBoolean(s + ".ShowHealth");
 					boolean despawn = sl.getCustomConfig().getBoolean(s + ".Despawn");
 					
 					//Tags

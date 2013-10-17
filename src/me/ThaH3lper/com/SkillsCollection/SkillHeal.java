@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 
 public class SkillHeal {
 	
-	//- msg amount =HP Chance
+	//- heal amount =HP Chance
 	// amount double
 	
 	public static void ExecuteHeal(LivingEntity l, String skill, Player player)

@@ -39,7 +39,6 @@ public class SkillPull {
 							direction.setZ( (direction.getZ()*-1)*modxz );
 							direction.setY( (direction.getY()*-1)*mody );
 							p.setVelocity(direction);
-							EpicBoss.plugin.logger.info("Pulled! modxz: " + modxz + " and mody: " + mody);
 						}
 					}
 				} else	{

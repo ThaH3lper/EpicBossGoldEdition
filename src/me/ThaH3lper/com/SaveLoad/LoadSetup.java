@@ -8,6 +8,7 @@ import java.util.List;
 import net.minecraft.v1_6_R3.org.bouncycastle.LICENSE;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.entity.LivingEntity;
 
@@ -28,7 +29,8 @@ public class LoadSetup {
 	public static File[] MobFiles, ItemFiles, LootFiles, SkillFiles, TimerFiles, SpawningFiles;
 	
 	public static int Inteval = 5 * 60;
-	public static int timerupdate, walkupdate;
+	public static int timerupdate, walkupdate, ShowHealthRadius;
+	public static String ShowHealth;
 	public static void ResetAll()
 	{
 		EpicBoss.plugin.saveItemList.clear();
@@ -104,9 +106,9 @@ public class LoadSetup {
 	
 	public static void SaveAll()
 	{
-		Bukkit.savePlayers();
+		/*Bukkit.savePlayers();
 		for(World w : Bukkit.getWorlds())
-			w.save();
+			w.save();*/
 		LoadMobList.SaveMobsList();
 		LoadLocation.saveAllLocations();
 		TimerHandler.SaveAllTimers();
@@ -119,7 +121,10 @@ public class LoadSetup {
 			int i = EpicBoss.plugin.settings.getCustomConfig().getInt("SaveInterval");
 			Inteval = i * 60;
 			timerupdate = EpicBoss.plugin.settings.getCustomConfig().getInt("TimerUpdate");
-			walkupdate = EpicBoss.plugin.settings.getCustomConfig().getInt("WalkUpdate");
+			walkupdate = EpicBoss.plugin.settings.getCustomConfig().getInt("WalkUpdate");		
+			ShowHealthRadius = EpicBoss.plugin.settings.getCustomConfig().getInt("ShowHealthRadius");
+			ShowHealth = EpicBoss.plugin.settings.getCustomConfig().getString("ShowHealth");
+			ShowHealth = ChatColor.translateAlternateColorCodes('&', ShowHealth);
 		}
 	}
 	
