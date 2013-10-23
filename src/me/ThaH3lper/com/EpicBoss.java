@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 import me.ThaH3lper.com.Clock.Clock;
 import me.ThaH3lper.com.Commands.CommandInput;
 import me.ThaH3lper.com.Drops.EpicNormal;
-import me.ThaH3lper.com.Drops.TempPlayer;
 import me.ThaH3lper.com.Drops.Fair.FairDrops;
 import me.ThaH3lper.com.Items.EpicItems;
 import me.ThaH3lper.com.Listener.LeashEvent;
@@ -17,7 +16,6 @@ import me.ThaH3lper.com.Listener.MobDrop;
 import me.ThaH3lper.com.Listener.MobHit;
 import me.ThaH3lper.com.Listener.MobSkill;
 import me.ThaH3lper.com.Listener.MobSpawn;
-import me.ThaH3lper.com.Listener.PlayerPickUp;
 import me.ThaH3lper.com.Listener.SignPlace;
 import me.ThaH3lper.com.Listener.SkillShootProjectileListener;
 import me.ThaH3lper.com.Listener.SlimeSplit;
@@ -58,7 +56,6 @@ public class EpicBoss extends JavaPlugin{
 	public List<UUID> allMobs = new ArrayList<UUID>();
 	public List<Timer> allTimers = new ArrayList<Timer>();
 	public List<FairDrops> listFair = new ArrayList<FairDrops>();
-	public List<TempPlayer> listTempPlayer = new ArrayList<TempPlayer>();
 	public List<Item> fairItems = new ArrayList<Item>();
 	
 	public List<EpicNormal> listLoots = new ArrayList<EpicNormal>();
@@ -91,7 +88,6 @@ public class EpicBoss extends JavaPlugin{
 		PluginManager manager = this.getServer().getPluginManager();
 		manager.registerEvents(new MobDrop(), this);
 		manager.registerEvents(new MobHit(), this);
-		manager.registerEvents(new PlayerPickUp(), this);
 		manager.registerEvents(new SignPlace(), this);
 		manager.registerEvents(new LeashEvent(), this);
 		manager.registerEvents(new MobSkill(), this);

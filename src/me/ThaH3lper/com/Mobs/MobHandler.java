@@ -4,7 +4,6 @@ import me.ThaH3lper.com.EpicBoss;
 import me.ThaH3lper.com.Libs.MobAttribute;
 import me.ThaH3lper.com.Skills.SkillHandler;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
@@ -18,6 +17,8 @@ import org.bukkit.entity.Ocelot;
 import org.bukkit.entity.Ocelot.Type;
 import org.bukkit.entity.Sheep;
 import org.bukkit.entity.Slime;
+import org.bukkit.entity.Villager;
+import org.bukkit.entity.Villager.Profession;
 import org.bukkit.entity.Wolf;
 
 public class MobHandler {
@@ -83,6 +84,10 @@ public class MobHandler {
 		if(l instanceof Horse)
 			l = setHorse(l, em);
 		
+		//set villager type
+		if(l instanceof Villager)
+			l = setVillager(l, em);
+		
 		//setEquipment
 		MobCommon.setEquipment(l, em);
 		
@@ -143,6 +148,13 @@ public class MobHandler {
 		Ocelot e = (Ocelot) l;
 		if(em.oso != null)
 			e.setCatType(Type.valueOf(em.oso));
+		return l;
+	}
+	public static LivingEntity setVillager(LivingEntity l, EpicMobs em)
+	{
+		Villager v = (Villager) l;
+		if(em.villagerType != null)
+			v.setProfession(Profession.valueOf(em.villagerType));
 		return l;
 	}
 	public static LivingEntity setHorse(LivingEntity l, EpicMobs em)

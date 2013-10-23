@@ -7,7 +7,7 @@ import org.bukkit.entity.LivingEntity;
 
 public class EpicMobs {
 	
-	public String Mobtype, Display, file, cmdName, oso, horseStyle, horseType, horseColor;
+	public String Mobtype, Display, file, cmdName, oso, horseStyle, horseType, horseColor, villagerType;
 	public double health, damage, speed, knock, follow;
 	public List<String> skills, loot, equipment;
 	public HashMap<String,Long> cooldowns;
@@ -15,7 +15,7 @@ public class EpicMobs {
 	int size, color;
 	
 	public EpicMobs(String file, String cmdName, String Mobtype, String Display, List<String> loot, List<String> equipment, double health, double damage, double speed, double knock, double follow, 
-			List<String> skills, boolean despawn, boolean showhp, int size, int color, String oso, String horseStyle, String horseType, String horseColor)
+			List<String> skills, boolean despawn, boolean showhp, int size, int color, String oso, String horseStyle, String horseType, String horseColor, String villagerType)
 	{
 		this.file = file;
 		this.cmdName = cmdName;
@@ -36,6 +36,7 @@ public class EpicMobs {
 		this.horseType = horseType;
 		this.horseColor = horseColor;
 		this.loot = loot;
+		this.villagerType = villagerType;
 		if(loot != null && loot.size() >= 1)
 		{
 			if(loot.get(0) != null)

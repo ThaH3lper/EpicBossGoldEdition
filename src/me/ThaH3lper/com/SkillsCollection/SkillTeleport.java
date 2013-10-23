@@ -1,8 +1,10 @@
 package me.ThaH3lper.com.SkillsCollection;
 
 import me.ThaH3lper.com.EpicBoss;
+import me.ThaH3lper.com.API.BossSkillEvent;
 import me.ThaH3lper.com.Skills.SkillHandler;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
@@ -20,6 +22,11 @@ public class SkillTeleport {
 		{
 			if(SkillHandler.CheckHealth(base[base.length-2], l, skill))
 			{	
+				BossSkillEvent event = new BossSkillEvent(l, skill, player, false);
+				Bukkit.getServer().getPluginManager().callEvent(event);
+				if(event.isChanceled())
+					return;
+				
 				l.teleport(player.getLocation());
 			}
 		}

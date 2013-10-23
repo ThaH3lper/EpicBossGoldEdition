@@ -11,12 +11,19 @@ public class EpicNormal {
 	Random r = new Random();
 	public String cmdName, file;
 	public List<EpicItemStack> list = new ArrayList<EpicItemStack>();
+	int Exp = 0;
 	
 	public EpicNormal(List<String> strings, String name, String file)
 	{
 		for(String s : strings)
 		{
-			list.add(new EpicItemStack(s));
+			if(s.contains("exp"))
+			{
+				String[] split = s.split(" ");
+				Exp = Integer.parseInt(split[1]);
+			}
+			else
+				list.add(new EpicItemStack(s));
 		}
 		this.cmdName = name;
 		this.file = file;
@@ -33,5 +40,9 @@ public class EpicNormal {
 			}
 		}
 		return stack;
+	}
+	public int getExp()
+	{
+		return Exp;
 	}
 }

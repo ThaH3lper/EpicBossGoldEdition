@@ -4,6 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import me.ThaH3lper.com.EpicBoss;
+import me.ThaH3lper.com.API.BossSkillEvent;
 import me.ThaH3lper.com.Mobs.EpicMobs;
 import me.ThaH3lper.com.Mobs.MobCommon;
 import me.ThaH3lper.com.Skills.SkillHandler;
@@ -31,6 +32,11 @@ public class SkillCommand {
 		{
 			if(SkillHandler.CheckHealth(base[base.length-2], l, skill))
 			{			
+				BossSkillEvent event = new BossSkillEvent(l, skill, player, false);
+				Bukkit.getServer().getPluginManager().callEvent(event);
+				if(event.isChanceled())
+					return;
+				
 				if(msg.contains("$player_x"))
 				{
 					if(player!=null)	{	

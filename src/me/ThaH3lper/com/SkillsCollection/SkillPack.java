@@ -1,12 +1,14 @@
 package me.ThaH3lper.com.SkillsCollection;
 
 import me.ThaH3lper.com.EpicBoss;
+import me.ThaH3lper.com.API.BossSkillEvent;
 import me.ThaH3lper.com.Libs.FireWorkEffect;
 import me.ThaH3lper.com.Mobs.EpicMobs;
 import me.ThaH3lper.com.Mobs.MobCommon;
 import me.ThaH3lper.com.Skills.EpicSkill;
 import me.ThaH3lper.com.Skills.SkillHandler;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
@@ -23,6 +25,11 @@ public class SkillPack {
 		{
 			if(SkillHandler.CheckHealth(base[base.length-2], l, skill))
 			{
+				BossSkillEvent event = new BossSkillEvent(l, skill, null, false);
+				Bukkit.getServer().getPluginManager().callEvent(event);
+				if(event.isChanceled())
+					return;
+				
 				EpicSkill es = getPack(base[1]);
 				
 				if(es != null)

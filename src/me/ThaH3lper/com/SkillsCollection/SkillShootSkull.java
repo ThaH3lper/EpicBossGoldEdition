@@ -1,17 +1,17 @@
 package me.ThaH3lper.com.SkillsCollection;
 
 import me.ThaH3lper.com.EpicBoss;
+import me.ThaH3lper.com.API.BossSkillEvent;
 import me.ThaH3lper.com.Skills.SkillHandler;
 
-import org.bukkit.Effect;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.craftbukkit.v1_6_R3.CraftWorld;
 import org.bukkit.entity.Creature;
-import org.bukkit.entity.Fireball;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.WitherSkull;
 import org.bukkit.util.Vector;
-import org.bukkit.craftbukkit.v1_6_R3.CraftWorld;
 
 public class SkillShootSkull {
 	
@@ -28,6 +28,11 @@ public class SkillShootSkull {
 		{
 			if(SkillHandler.CheckHealth(base[base.length-2], l, skill))
 			{
+				BossSkillEvent event = new BossSkillEvent(l, skill, player, false);
+				Bukkit.getServer().getPluginManager().callEvent(event);
+				if(event.isChanceled())
+					return;
+				
 				float power = Float.parseFloat(data[0]);
 	
 				WitherSkull fireball;

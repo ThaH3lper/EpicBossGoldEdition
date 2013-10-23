@@ -3,15 +3,13 @@ package me.ThaH3lper.com.SkillsCollection;
 import java.util.List;
 
 import me.ThaH3lper.com.EpicBoss;
+import me.ThaH3lper.com.API.BossSkillEvent;
 import me.ThaH3lper.com.Skills.SkillHandler;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.entity.Creature;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
 
 public class SkillConsume {
 	
@@ -27,6 +25,11 @@ public class SkillConsume {
 		{
 			if(SkillHandler.CheckHealth(base[base.length-2], l, skill))
 			{
+				BossSkillEvent event = new BossSkillEvent(l, skill, null, false);
+				Bukkit.getServer().getPluginManager().callEvent(event);
+				if(event.isChanceled())
+					return;
+				
 				int radius_xz = Integer.parseInt(data[0]);
 				int radius_y = Integer.parseInt(data[1]);
 				int damage = Integer.parseInt(data[2]);

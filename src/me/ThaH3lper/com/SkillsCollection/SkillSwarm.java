@@ -1,12 +1,14 @@
 package me.ThaH3lper.com.SkillsCollection;
 
 import me.ThaH3lper.com.EpicBoss;
+import me.ThaH3lper.com.API.BossSkillEvent;
 import me.ThaH3lper.com.Mobs.AllMobs;
 import me.ThaH3lper.com.Mobs.EpicMobs;
 import me.ThaH3lper.com.Mobs.MobCommon;
 import me.ThaH3lper.com.Mobs.MobHandler;
 import me.ThaH3lper.com.Skills.SkillHandler;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -25,6 +27,11 @@ public class SkillSwarm {
 		{
 			if(SkillHandler.CheckHealth(base[base.length-2], l, skill))
 			{
+				BossSkillEvent event = new BossSkillEvent(l, skill, player, false);
+				Bukkit.getServer().getPluginManager().callEvent(event);
+				if(event.isChanceled())
+					return;
+				
 				int amount = Integer.parseInt(data[1]);
 				int radious = Integer.parseInt(data[2]);
 				if(data[0].contains("$"))

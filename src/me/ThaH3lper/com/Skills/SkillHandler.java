@@ -8,6 +8,7 @@ import me.ThaH3lper.com.Mobs.MobCommon;
 import me.ThaH3lper.com.SkillsCollection.SkillBossFirework;
 import me.ThaH3lper.com.SkillsCollection.SkillCommand;
 import me.ThaH3lper.com.SkillsCollection.SkillConsume;
+import me.ThaH3lper.com.SkillsCollection.SkillCustom;
 import me.ThaH3lper.com.SkillsCollection.SkillHeal;
 import me.ThaH3lper.com.SkillsCollection.SkillLightning;
 import me.ThaH3lper.com.SkillsCollection.SkillMsg;
@@ -79,44 +80,46 @@ public class SkillHandler {
 		{
 			if(split[0].equals("msg"))
 				SkillMsg.ExecuteMsg(l, skill, p);
-			if(split[0].equals("bossfirework"))
+			else if(split[0].equals("bossfirework"))
 				SkillBossFirework.ExecuteBossFirework(l, skill);
-			if(split[0].equals("playerfirework"))
+			else if(split[0].equals("playerfirework"))
 				SkillPlayerFirework.ExecutePlayerFirework(l, skill, p);
-			if((split[0].equals("radiousfirework")) || (split[0].equals("radiusfirework")))
+			else if((split[0].equals("radiousfirework")) || (split[0].equals("radiusfirework")))
 				SkillRadiousFirework.ExecuteRadiousFirework(l, skill);
-			if(split[0].equals("pack"))
+			else if(split[0].equals("pack"))
 				SkillPack.ExecutePack(l, skill, p);
-			if(split[0].equals("heal"))
+			else if(split[0].equals("heal"))
 				SkillHeal.ExecuteHeal(l, skill, p);
-			if(split[0].equals("cmd"))
+			else if(split[0].equals("cmd"))
 				SkillCommand.ExecuteCommand(l, skill, p);
-			if((split[0].equals("radiouscmd")) || (split[0].equals("radiuscmd")))
+			else if((split[0].equals("radiouscmd")) || (split[0].equals("radiuscmd")))
 				SkillRadiusCommand.ExecuteCommand(l, skill);
-			if(split[0].equals("potion"))
+			else if(split[0].equals("potion"))
 				SkillPotion.ExecutePotion(l, skill, p);
-			if(split[0].equals("potionboss"))
+			else if(split[0].equals("potionboss"))
 				SkillPotionBoss.ExecutePotionBoss(l, skill, p);
-			if(split[0].equals("throw"))
+			else if(split[0].equals("throw"))
 				SkillThrow.ExecuteThrow(l, skill, p);
-			if(split[0].equals("lightning"))
+			else if(split[0].equals("lightning"))
 				SkillLightning.ExecuteLightning(l, skill, p);
-			if(split[0].equals("shootfireball"))
+			else if(split[0].equals("shootfireball"))
 				SkillShootFireball.ExecuteShoot(l, skill, p);
-			if((split[0].equals("shootprojectile")) || (split[0].equals("projectile")))
+			else if((split[0].equals("shootprojectile")) || (split[0].equals("projectile")))
 				SkillShootProjectile.ExecuteShoot(l, skill, p);
-			if((split[0].equals("shootpotion")) || (split[0].equals("throwpotion")))
+			else if((split[0].equals("shootpotion")) || (split[0].equals("throwpotion")))
 				SkillShootPotion.ExecuteShoot(l, skill, p);
-			if(split[0].equals("shootskull"))
+			else if(split[0].equals("shootskull"))
 				SkillShootSkull.ExecuteShoot(l, skill, p);
-			if(split[0].equals("swarm"))
+			else if(split[0].equals("swarm"))
 				SkillSwarm.ExecuteSwarm(l, skill, p);
-			if(split[0].equals("teleport"))
+			else if(split[0].equals("teleport"))
 				SkillTeleport.ExecuteTeleport(l, skill, p);
-			if(split[0].equals("pull"))
+			else if(split[0].equals("pull"))
 				SkillPull.ExecutePull(l, skill, p);
-			if(split[0].equals("consume"))
+			else if(split[0].equals("consume"))
 				SkillConsume.ExecuteConsume(l, skill);
+			else
+				SkillCustom.ExecuteCustom(l, skill, p);
 		}
 	}
 	

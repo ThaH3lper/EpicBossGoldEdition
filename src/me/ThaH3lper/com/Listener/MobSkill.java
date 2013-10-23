@@ -1,15 +1,11 @@
 package me.ThaH3lper.com.Listener;
 
-import java.awt.HeadlessException;
-import java.util.List;
-
 import me.ThaH3lper.com.EpicBoss;
 import me.ThaH3lper.com.Mobs.EpicMobs;
 import me.ThaH3lper.com.Mobs.MobCommon;
 import me.ThaH3lper.com.SaveLoad.LoadSetup;
 import me.ThaH3lper.com.Skills.SkillHandler;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
@@ -17,7 +13,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.metadata.MetadataValue;
 
 public class MobSkill implements Listener{
 
