@@ -1,6 +1,7 @@
 package me.ThaH3lper.com.SkillsCollection;
 
 import me.ThaH3lper.com.EpicBoss;
+import me.ThaH3lper.com.API.BossSkillEvent;
 import me.ThaH3lper.com.Skills.SkillHandler;
 
 import org.bukkit.Bukkit;
@@ -21,6 +22,11 @@ public class SkillPull {
 		{
 			if(SkillHandler.CheckHealth(base[base.length-2], l, skill))
 			{
+				BossSkillEvent event = new BossSkillEvent(l, skill, player, false);
+				Bukkit.getServer().getPluginManager().callEvent(event);
+				if(event.isChanceled())
+					return;
+				
 				int radius = Integer.parseInt(data[0]);
 				float velocity = Float.parseFloat(data[1]);
 
@@ -39,7 +45,6 @@ public class SkillPull {
 							direction.setZ( (direction.getZ()*-1)*modxz );
 							direction.setY( (direction.getY()*-1)*mody );
 							p.setVelocity(direction);
-							EpicBoss.plugin.logger.info("Pulled! modxz: " + modxz + " and mody: " + mody);
 						}
 					}
 				} else	{

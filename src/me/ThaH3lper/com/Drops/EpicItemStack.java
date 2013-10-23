@@ -1,5 +1,6 @@
 package me.ThaH3lper.com.Drops;
 
+import me.ThaH3lper.com.EpicBoss;
 import me.ThaH3lper.com.Items.EpicItems;
 import me.ThaH3lper.com.Items.ItemHandler;
 
@@ -42,7 +43,16 @@ public class EpicItemStack {
 			{
 				int id = Integer.parseInt(split[0]);
 				short data = Short.parseShort(split[1]);
-				int amount = Integer.parseInt(split[2]);
+				int amount = 0;
+				if(split[2].contains("-"))
+				{
+					String[] nr = split[2].split("-");
+					int min = Integer.parseInt(nr[0]);
+					int max = Integer.parseInt(nr[1]);
+					amount = EpicBoss.r.nextInt(max-min) + min;
+				}
+				else
+					amount = Integer.parseInt(split[2]);
 				if(split.length == 4)
 					slot = Integer.parseInt(split[3]);
 				this.stack = new ItemStack(id, amount, data);

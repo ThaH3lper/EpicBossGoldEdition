@@ -6,8 +6,6 @@ import java.util.List;
 import me.ThaH3lper.com.EpicBoss;
 import me.ThaH3lper.com.Mobs.MobHandler;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Animals;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;

@@ -2,8 +2,6 @@ package me.ThaH3lper.com.Listener;
 
 import me.ThaH3lper.com.Spawning.SpawningHandler;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;

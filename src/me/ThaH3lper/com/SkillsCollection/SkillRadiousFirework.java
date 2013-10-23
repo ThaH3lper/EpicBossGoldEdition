@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.ThaH3lper.com.EpicBoss;
+import me.ThaH3lper.com.API.BossSkillEvent;
 import me.ThaH3lper.com.Libs.FireWorkEffect;
 import me.ThaH3lper.com.Skills.SkillHandler;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.FireworkEffect.Type;
@@ -29,6 +31,11 @@ public class SkillRadiousFirework {
 		{
 			if(SkillHandler.CheckHealth(base[base.length-2], l, skill))
 			{
+				BossSkillEvent event = new BossSkillEvent(l, skill, null, false);
+				Bukkit.getServer().getPluginManager().callEvent(event);
+				if(event.isChanceled())
+					return;
+				
 				int amount = Integer.parseInt(data[0]);
 				int radious = Integer.parseInt(data[1]);
 				boolean flicker = Boolean.valueOf(data[4]);

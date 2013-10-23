@@ -1,8 +1,10 @@
 package me.ThaH3lper.com.SkillsCollection;
 
 import me.ThaH3lper.com.EpicBoss;
+import me.ThaH3lper.com.API.BossSkillEvent;
 import me.ThaH3lper.com.Skills.SkillHandler;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Projectile;
 import org.bukkit.entity.LivingEntity;
@@ -28,6 +30,11 @@ public class SkillShootPotion {
 		{
 			if(SkillHandler.CheckHealth(base[base.length-2], l, skill))
 			{	
+				BossSkillEvent event = new BossSkillEvent(l, skill, player, false);
+				Bukkit.getServer().getPluginManager().callEvent(event);
+				if(event.isChanceled())
+					return;
+				
             	String pType = data[0];
             	float pDuration = Float.parseFloat(data[1]);
             	int pLevel = Integer.parseInt(data[2]) - 1;

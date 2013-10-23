@@ -88,35 +88,35 @@ public class MobCommon {
 							{
 								hand = is;
 								if(prefix.equals("!"))
-									ee.setItemInHandDropChance(hand.chance);
+									ee.setItemInHandDropChance(1f);
 							}
 						if(is.slot == 1)
 							if(compair(is, boots))
 							{
 								boots = is;
 								if(prefix.equals("!"))
-									ee.setBootsDropChance(boots.chance);
+									ee.setBootsDropChance(1f);
 							}
 						if(is.slot == 2)
 							if(compair(is, leggings))
 							{
 								leggings = is;
 								if(prefix.equals("!"))
-									ee.setLeggingsDropChance(leggings.chance);
+									ee.setLeggingsDropChance(1f);
 							}
 						if(is.slot == 3)
 							if(compair(is, chest))
 							{
 								chest = is;
 								if(prefix.equals("!"))
-									ee.setChestplateDropChance(chest.chance);
+									ee.setChestplateDropChance(1f);
 							}
 						if(is.slot == 4)
 							if(compair(is, helmet))
 							{
 								helmet = is;
 								if(prefix.equals("!"))
-									ee.setHelmetDropChance(helmet.chance);
+									ee.setHelmetDropChance(1f);
 							}
 					}
 				}

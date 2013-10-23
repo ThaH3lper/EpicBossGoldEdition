@@ -4,3 +4,5 @@
 SaveInterval: 1
 TimerUpdate: 1
 WalkUpdate: 30
+ShowHealth: '&8[&6EpicBoss&8] $boss &8[&4$percentage% left&8]'
+ShowHealthRadius: 25

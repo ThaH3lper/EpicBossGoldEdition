@@ -3,19 +3,19 @@ package me.ThaH3lper.com.SkillsCollection;
 import java.lang.reflect.Array;
 
 import me.ThaH3lper.com.EpicBoss;
-import me.ThaH3lper.com.SaveLoad.SaveLoadHandler;
+import me.ThaH3lper.com.API.BossSkillEvent;
 import me.ThaH3lper.com.Skills.SkillHandler;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Effect;
-import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_6_R3.CraftWorld;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.Egg;
 import org.bukkit.entity.EnderPearl;
-import org.bukkit.entity.Projectile;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
 import org.bukkit.entity.Snowball;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.Vector;
@@ -38,6 +38,11 @@ public class SkillShootProjectile {
 		{
 			if(SkillHandler.CheckHealth(base[base.length-2], l, skill))
 			{
+				BossSkillEvent event = new BossSkillEvent(l, skill, player, false);
+				Bukkit.getServer().getPluginManager().callEvent(event);
+				if(event.isChanceled())
+					return;
+				
 				String projectileType = (Array.getLength(data) > 0) ? data[0] : "arrow";
 				int damage = (Array.getLength(data) > 1) ? Integer.parseInt(data[1]) : 1;
 				float velocity = (Array.getLength(data) > 2) ? Float.parseFloat(data[2]) : 1;

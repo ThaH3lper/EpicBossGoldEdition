@@ -4,9 +4,9 @@ import java.util.Collections;
 import java.util.List;
 
 import me.ThaH3lper.com.EpicBoss;
+import me.ThaH3lper.com.API.BossDeathEvent;
 import me.ThaH3lper.com.Drops.DropHandler;
 import me.ThaH3lper.com.Drops.EpicNormal;
-import me.ThaH3lper.com.Drops.TempPlayer;
 import me.ThaH3lper.com.Drops.Fair.FairDrops;
 import me.ThaH3lper.com.Drops.Fair.FairPlayer;
 import me.ThaH3lper.com.Mobs.EpicMobs;
@@ -16,9 +16,7 @@ import me.ThaH3lper.com.Timer.Timer;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
@@ -28,7 +26,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.inventory.ItemStack;
 
 public class MobDrop implements Listener{
 
@@ -40,11 +37,10 @@ public class MobDrop implements Listener{
 		{
 			removeTimer(l);
 			e.getDrops().clear();
-			EpicMobs em = MobCommon.getEpicMob(l);
-			
+			EpicMobs em = MobCommon.getEpicMob(l);		
 			SkillHandler.ExecuteSkills(em.skills, l, getKiller(e));
 			
-			if(em.fair)
+			if(em.fair && DropHandler.getFairDrops(l) != null)
 			{
 				FairDrops fd = DropHandler.getFairDrops(l);
 				List<FairPlayer> list = sort(fd.players);
@@ -53,56 +49,36 @@ public class MobDrop implements Listener{
 				for(FairPlayer fp : list)
 				{
 					fd.Shout(ChatColor.LIGHT_PURPLE + fp.player.getName() + ChatColor.GRAY + ": " + ChatColor.GOLD + "" + ChatColor.ITALIC + ((int)fp.damage)+ "dmg");
-					TempPlayer tp = DropHandler.getTempPlayer(fp.player);
-					if(tp == null)
-					{
-						tp = new TempPlayer(fp.player);
-						EpicBoss.plugin.listTempPlayer.add(tp);
-					}
-					tp.items.clear();
 					int i = list.indexOf(fp);
 					if(fd.loot.size() > i)
 					{
 						EpicNormal en = fd.loot.get(i);
 						if(en != null)
 						{
-							for(ItemStack is : en.getDrops())
-							{
-								Location loc = e.getEntity().getLocation();
-								//event
-								Item item = (Item)loc.getWorld().dropItemNaturally(loc, is);
-								EpicBoss.plugin.fairItems.add(item);
-								tp.items.add(item);
-							}
+							DropHandler.dropPlayer(en, fp.player);
 						}
 					}
-					if(fd.rest != null)
+					else if(fd.rest != null)
 					{
 						EpicNormal en = fd.rest;
-						for(ItemStack is : en.getDrops())
+						if(en != null)
 						{
-							Location loc = e.getEntity().getLocation();
-							//event
-							Item item = (Item)loc.getWorld().dropItemNaturally(loc, is);
-							EpicBoss.plugin.fairItems.add(item);
-							tp.items.add(item);
-						}
-					
+							DropHandler.dropPlayer(en, fp.player);
+						}	
 					}
-					EpicBoss.plugin.listFair.remove(fd);
-				}					
+				}
+				EpicBoss.plugin.listFair.remove(fd);
 			}
-			else
+			else if(!em.fair)
 			{
 				for(String s : em.loot)
 				{
 					EpicNormal en = DropHandler.getEpicNormal(s);
 					if(en != null)
 					{
-						List<ItemStack> drops = en.getDrops();
-						Location loc = e.getEntity().getLocation();
-						//event
-						DropHandler.Drop(loc, en, drops);
+						BossDeathEvent event = new BossDeathEvent(l, l.getKiller(), en.getDrops(), en.getExp());
+						Bukkit.getServer().getPluginManager().callEvent(event);
+						DropHandler.Drop(event.getLivingEntity().getLocation(), event.getExp(), event.getDrops());
 					}
 				}
 			}

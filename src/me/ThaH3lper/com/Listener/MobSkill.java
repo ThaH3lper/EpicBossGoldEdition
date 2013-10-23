@@ -1,13 +1,11 @@
 package me.ThaH3lper.com.Listener;
 
-import java.util.List;
-
 import me.ThaH3lper.com.EpicBoss;
 import me.ThaH3lper.com.Mobs.EpicMobs;
 import me.ThaH3lper.com.Mobs.MobCommon;
+import me.ThaH3lper.com.SaveLoad.LoadSetup;
 import me.ThaH3lper.com.Skills.SkillHandler;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
@@ -15,7 +13,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.metadata.MetadataValue;
 
 public class MobSkill implements Listener{
 
@@ -28,7 +25,8 @@ public class MobSkill implements Listener{
 		if(!EpicBoss.plugin.allMobs.contains(l.getUniqueId()))
 			return;
 		EpicMobs em = MobCommon.getEpicMob(l);
-		 
+		showHealth(l, em);
+		
 		if(e.getDamager() instanceof Player)	{
 			SkillHandler.ExecuteSkills(em.skills, l, (Player) e.getDamager());
 			return;
@@ -41,5 +39,27 @@ public class MobSkill implements Listener{
 			}
 			SkillHandler.ExecuteSkills(em.skills, l, null);
 		}	
+	}
+	
+	public void showHealth(LivingEntity l, EpicMobs em)
+	{
+		if(!em.showhp)
+			return;
+		int per = ((int)((l.getHealth()/l.getMaxHealth())*10))+1;
+		if(per >= 10)
+			return;
+		if(!SkillHandler.hasUsed("percentage" + per, l))
+		{
+			MobCommon.setMeta(l, "percentage" + per, "percentage" + per);
+			
+			String string = LoadSetup.ShowHealth;
+			string = string.replace("$percentage", per + "0");
+			string = string.replace("$boss", l.getCustomName() + "");
+			
+			for(Player p : SkillHandler.getRadious(l, LoadSetup.ShowHealthRadius))
+				p.sendMessage(string);
+		}
+		
+		
 	}
 }

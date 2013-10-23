@@ -8,6 +8,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Horse;
+import org.bukkit.entity.Horse.Color;
 import org.bukkit.entity.Horse.Style;
 import org.bukkit.entity.Horse.Variant;
 import org.bukkit.entity.LivingEntity;
@@ -16,6 +17,8 @@ import org.bukkit.entity.Ocelot;
 import org.bukkit.entity.Ocelot.Type;
 import org.bukkit.entity.Sheep;
 import org.bukkit.entity.Slime;
+import org.bukkit.entity.Villager;
+import org.bukkit.entity.Villager.Profession;
 import org.bukkit.entity.Wolf;
 
 public class MobHandler {
@@ -81,6 +84,10 @@ public class MobHandler {
 		if(l instanceof Horse)
 			l = setHorse(l, em);
 		
+		//set villager type
+		if(l instanceof Villager)
+			l = setVillager(l, em);
+		
 		//setEquipment
 		MobCommon.setEquipment(l, em);
 		
@@ -143,6 +150,13 @@ public class MobHandler {
 			e.setCatType(Type.valueOf(em.oso));
 		return l;
 	}
+	public static LivingEntity setVillager(LivingEntity l, EpicMobs em)
+	{
+		Villager v = (Villager) l;
+		if(em.villagerType != null)
+			v.setProfession(Profession.valueOf(em.villagerType));
+		return l;
+	}
 	public static LivingEntity setHorse(LivingEntity l, EpicMobs em)
 	{
 		Horse e = (Horse) l;
@@ -150,6 +164,8 @@ public class MobHandler {
 			e.setStyle(Style.valueOf(em.horseStyle));
 		if(em.horseType != null)
 			e.setVariant(Variant.valueOf(em.horseType));
+		if(em.horseColor != null)
+			e.setColor(Color.valueOf(em.horseColor));
 		return l;
 	}
 }

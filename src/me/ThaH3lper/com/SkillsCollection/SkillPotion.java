@@ -1,8 +1,10 @@
 package me.ThaH3lper.com.SkillsCollection;
 
 import me.ThaH3lper.com.EpicBoss;
+import me.ThaH3lper.com.API.BossSkillEvent;
 import me.ThaH3lper.com.Skills.SkillHandler;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
@@ -10,7 +12,7 @@ import org.bukkit.potion.PotionEffectType;
 
 public class SkillPotion {
 	
-	// - potion radius:type:duraction:lvl <HP chance(float)
+	// - potion radius:type:duraction:lvl <HP chance
 	
 	public static void ExecutePotion(LivingEntity l, String skill, Player player)
 	{
@@ -21,11 +23,16 @@ public class SkillPotion {
 		{
 			if(SkillHandler.CheckHealth(base[base.length-2], l, skill))
 			{
+				BossSkillEvent event = new BossSkillEvent(l, skill, player, false);
+				Bukkit.getServer().getPluginManager().callEvent(event);
+				if(event.isChanceled())
+					return;
+				
 				int radius = Integer.parseInt(data[0]);
 				String pType = data[1];
 				float pDuration = Float.parseFloat(data[2]);
 				int pLevel = Integer.parseInt(data[3]) - 1;
-
+				
 				PotionEffect pe = new PotionEffect(PotionEffectType.getByName(pType), (int) (pDuration * 20), pLevel);
 				if(pe != null)	{
 					if(radius > 0)

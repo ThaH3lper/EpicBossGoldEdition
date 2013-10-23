@@ -8,9 +8,14 @@ import me.ThaH3lper.com.Drops.Fair.FairDrops;
 import me.ThaH3lper.com.Drops.Fair.FairPlayer;
 import me.ThaH3lper.com.Mobs.EpicMobs;
 
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.ExperienceOrb;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public class DropHandler {
@@ -27,12 +32,27 @@ public class DropHandler {
 		return null;
 	}
 	
-	public static void Drop(Location loc, EpicNormal en, List<ItemStack> drops)
+	public static void Drop(Location loc, int Exp, List<ItemStack> drops)
 	{
 		for(ItemStack is : drops)
 		{
 			loc.getWorld().dropItemNaturally(loc, is);
-		}		
+		}
+		if(Exp != 0)
+		{
+			int i = Exp % 10;
+			int per = (Exp - (Exp % 10))/10;
+			for(int y = 0; y < 10; y++)
+			{
+				ExperienceOrb eo = (ExperienceOrb)loc.getWorld().spawnEntity(loc, EntityType.EXPERIENCE_ORB);
+				eo.setExperience(per);
+			}
+			if(i != 0)
+			{
+				ExperienceOrb eo = (ExperienceOrb)loc.getWorld().spawnEntity(loc, EntityType.EXPERIENCE_ORB);
+				eo.setExperience(i);
+			}
+		}
 	}
 	
 	public static FairDrops getFairDrops(LivingEntity l)
@@ -97,13 +117,13 @@ public class DropHandler {
 		return null;
 	}
 	
-	public static TempPlayer getTempPlayer(Player p)
+	public static void dropPlayer(EpicNormal en, Player p)
 	{
-		for(TempPlayer tp : EpicBoss.plugin.listTempPlayer)
-		{
-			if(tp.player.equals(p))
-				return tp;
-		}
-		return null;
+		String name = ChatColor.GOLD + "Loot! " + ChatColor.GREEN + "Exp: " + ChatColor.GRAY + en.Exp;
+		Inventory i = Bukkit.getServer().createInventory(null, 18, name);
+		for(ItemStack s : en.getDrops())
+			i.addItem(s);
+		p.openInventory(i);
+		p.giveExp(en.Exp);
 	}
 }
