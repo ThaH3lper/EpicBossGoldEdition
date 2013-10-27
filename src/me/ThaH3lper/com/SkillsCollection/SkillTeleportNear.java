@@ -33,9 +33,9 @@ public class SkillTeleportNear {
 				double new_z = Loc.getZ();
 				double new_y = Loc.getY();
 				
-				new_x = (EpicBoss.r.nextInt(2) == 1) ? (new_x + EpicBoss.r.nextInt((int)radius_xz)) : (new_x - EpicBoss.r.nextInt((int)radius_xz));
-				new_z = (EpicBoss.r.nextInt(2) == 1) ? (new_z + EpicBoss.r.nextInt((int)radius_xz)) : (new_z - EpicBoss.r.nextInt((int)radius_xz));
-				new_y = (EpicBoss.r.nextInt(2) == 1) ? (new_y + EpicBoss.r.nextInt((int)radius_y)) : (new_y - EpicBoss.r.nextInt((int)radius_y));
+				new_x = (EpicBoss.r.nextInt(2) == 1) ? (new_x + EpicBoss.r.nextInt((int)radius_xz + 1)) : (new_x - EpicBoss.r.nextInt((int)radius_xz + 1));
+				new_z = (EpicBoss.r.nextInt(2) == 1) ? (new_z + EpicBoss.r.nextInt((int)radius_xz + 1)) : (new_z - EpicBoss.r.nextInt((int)radius_xz + 1));
+				new_y = (EpicBoss.r.nextInt(2) == 1) ? (new_y + EpicBoss.r.nextInt((int)radius_y + 1)) : (new_y - EpicBoss.r.nextInt((int)radius_y + 1));
 				
 				Loc.setX(new_x);
 				Loc.setZ(new_z);
