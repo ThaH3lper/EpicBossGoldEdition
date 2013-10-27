@@ -25,6 +25,7 @@ import me.ThaH3lper.com.SkillsCollection.SkillShootProjectile;
 import me.ThaH3lper.com.SkillsCollection.SkillShootSkull;
 import me.ThaH3lper.com.SkillsCollection.SkillSwarm;
 import me.ThaH3lper.com.SkillsCollection.SkillTeleport;
+import me.ThaH3lper.com.SkillsCollection.SkillTeleportNear;
 import me.ThaH3lper.com.SkillsCollection.SkillThrow;
 
 import org.bukkit.Bukkit;
@@ -114,6 +115,8 @@ public class SkillHandler {
 				SkillSwarm.ExecuteSwarm(l, skill, p);
 			else if(split[0].equals("teleport"))
 				SkillTeleport.ExecuteTeleport(l, skill, p);
+			else if(split[0].equals("teleportnear"))
+				SkillTeleportNear.ExecuteTeleportNear(l, skill, p);
 			else if(split[0].equals("pull"))
 				SkillPull.ExecutePull(l, skill, p);
 			else if(split[0].equals("consume"))
