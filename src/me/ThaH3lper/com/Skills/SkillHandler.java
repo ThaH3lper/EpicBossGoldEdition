@@ -9,6 +9,9 @@ import me.ThaH3lper.com.SkillsCollection.SkillBossFirework;
 import me.ThaH3lper.com.SkillsCollection.SkillCommand;
 import me.ThaH3lper.com.SkillsCollection.SkillConsume;
 import me.ThaH3lper.com.SkillsCollection.SkillCustom;
+import me.ThaH3lper.com.SkillsCollection.SkillDamage;
+import me.ThaH3lper.com.SkillsCollection.SkillForcePull;
+import me.ThaH3lper.com.SkillsCollection.SkillForcePullNear;
 import me.ThaH3lper.com.SkillsCollection.SkillHeal;
 import me.ThaH3lper.com.SkillsCollection.SkillLightning;
 import me.ThaH3lper.com.SkillsCollection.SkillMsg;
@@ -16,6 +19,7 @@ import me.ThaH3lper.com.SkillsCollection.SkillPack;
 import me.ThaH3lper.com.SkillsCollection.SkillPlayerFirework;
 import me.ThaH3lper.com.SkillsCollection.SkillPotion;
 import me.ThaH3lper.com.SkillsCollection.SkillPotionBoss;
+import me.ThaH3lper.com.SkillsCollection.SkillPotionMobs;
 import me.ThaH3lper.com.SkillsCollection.SkillPull;
 import me.ThaH3lper.com.SkillsCollection.SkillRadiousFirework;
 import me.ThaH3lper.com.SkillsCollection.SkillRadiusCommand;
@@ -89,6 +93,8 @@ public class SkillHandler {
 				SkillRadiousFirework.ExecuteRadiousFirework(l, skill);
 			else if(split[0].equals("pack"))
 				SkillPack.ExecutePack(l, skill, p);
+			else if(split[0].equals("damage"))
+				SkillDamage.ExecuteDamage(l, skill, p);
 			else if(split[0].equals("heal"))
 				SkillHeal.ExecuteHeal(l, skill, p);
 			else if(split[0].equals("cmd"))
@@ -99,6 +105,8 @@ public class SkillHandler {
 				SkillPotion.ExecutePotion(l, skill, p);
 			else if(split[0].equals("potionboss"))
 				SkillPotionBoss.ExecutePotionBoss(l, skill, p);
+			else if(split[0].equals("potionmobs"))
+				SkillPotionMobs.ExecutePotionMobs(l, skill);
 			else if(split[0].equals("throw"))
 				SkillThrow.ExecuteThrow(l, skill, p);
 			else if(split[0].equals("lightning"))
@@ -119,6 +127,10 @@ public class SkillHandler {
 				SkillTeleportNear.ExecuteTeleportNear(l, skill, p);
 			else if(split[0].equals("pull"))
 				SkillPull.ExecutePull(l, skill, p);
+			else if(split[0].equals("forcepull"))
+				SkillForcePull.ExecuteForcePull(l, skill, p);
+			else if(split[0].equals("forcepullnear"))
+				SkillForcePullNear.ExecuteForcePullNear(l, skill, p);
 			else if(split[0].equals("consume"))
 				SkillConsume.ExecuteConsume(l, skill);
 			else
