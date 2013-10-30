@@ -36,8 +36,11 @@ public class SkillMsg {
 				
 				if(msg.contains("$player"))
 				{
-					if(player!=null)
+					if(player!=null)	{
 						msg = msg.replace("$player", player.getName());
+					} else	{
+						return;
+					}
 				}
 				
 				if(msg.contains("$bosshp"))
