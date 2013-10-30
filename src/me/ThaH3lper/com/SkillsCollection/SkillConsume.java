@@ -4,6 +4,8 @@ import java.util.List;
 
 import me.ThaH3lper.com.EpicBoss;
 import me.ThaH3lper.com.API.BossSkillEvent;
+import me.ThaH3lper.com.Mobs.EpicMobs;
+import me.ThaH3lper.com.Mobs.MobCommon;
 import me.ThaH3lper.com.Skills.SkillHandler;
 
 import org.bukkit.Bukkit;
@@ -13,7 +15,7 @@ import org.bukkit.entity.LivingEntity;
 
 public class SkillConsume {
 	
-	//- consume radius_horizontal:radius_vertical:damage:heal:type
+	//- consume radius_horizontal:radius_vertical:damage:heal mobtype,mobtype,mobtype
 	
 	@SuppressWarnings("deprecation")
 	public static void ExecuteConsume(LivingEntity l, String skill)
@@ -34,24 +36,38 @@ public class SkillConsume {
 				int radius_y = Integer.parseInt(data[1]);
 				int damage = Integer.parseInt(data[2]);
 				int heal = Integer.parseInt(data[3]);
-				String mobtype = data[4];
+				
+				String[] mobtypes = base[2].split(",");
 				
 				List<Entity> moblist = l.getNearbyEntities(radius_xz, radius_y, radius_xz);
 					
 				for(Entity e : moblist)	{
 					if(e instanceof LivingEntity)	{
-						if(e.getType() == EntityType.fromName(mobtype))	{
-							((LivingEntity) e).damage(damage);
-
-							if((l.getHealth() + heal) >= l.getMaxHealth())	{
-								l.setHealth(l.getMaxHealth());
+						for(String mob : mobtypes)	{
+							if(e.getType() == EntityType.fromName(mob))	{
+								ConsumeMob(l, (LivingEntity)e, damage, heal);
 							} else	{
-								l.setHealth(l.getHealth() + heal);
+								if(EpicBoss.plugin.allMobs.contains(e.getUniqueId()))	{
+									EpicMobs em = MobCommon.getEpicMob((LivingEntity)e);
+									
+									if(mob.equals(em.cmdName))	{
+										ConsumeMob(l, (LivingEntity)e, damage, heal);
+									}
+								}
 							}
 						}
 					}
 				}
 			}
+		}
+	}
+	private static void ConsumeMob(LivingEntity consumer, LivingEntity consumed, int damage, int heal)	{
+		consumed.damage(damage);
+		
+		if((consumer.getHealth() + heal) >= consumer.getMaxHealth())	{
+			consumer.setHealth(consumer.getMaxHealth());
+		} else	{
+			consumer.setHealth(consumer.getHealth() + heal);
 		}
 	}
 }
