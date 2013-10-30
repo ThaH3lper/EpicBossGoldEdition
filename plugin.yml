@@ -1,7 +1,7 @@
 name: EpicBoss Gold Edition
 main: me.ThaH3lper.com.EpicBoss
 version: 0.1.0
-description: By ThaH3lper :)
+description: By ThaH3lper
 commands:
   epicboss:
       description: EpicBoss Base Command!
