@@ -40,6 +40,6 @@ public class Clock implements Runnable{
 	public static void executeSave()
 	{
 		LoadSetup.SaveAll();
-		EpicBoss.plugin.allMobs = LoadMobList.Refresh(EpicBoss.plugin.getMobsAll());
+		//EpicBoss.plugin.allMobs = LoadMobList.Refresh(EpicBoss.plugin.getMobsAll());
 	}
 }

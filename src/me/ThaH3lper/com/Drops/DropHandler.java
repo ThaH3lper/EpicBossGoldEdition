@@ -40,9 +40,9 @@ public class DropHandler {
 		}
 		if(Exp != 0)
 		{
-			int i = Exp % 10;
-			int per = (Exp - (Exp % 10))/10;
-			for(int y = 0; y < 10; y++)
+			int i = Exp % 4;
+			int per = (Exp - (Exp % 4))/4;
+			for(int y = 0; y < 4; y++)
 			{
 				ExperienceOrb eo = (ExperienceOrb)loc.getWorld().spawnEntity(loc, EntityType.EXPERIENCE_ORB);
 				eo.setExperience(per);
