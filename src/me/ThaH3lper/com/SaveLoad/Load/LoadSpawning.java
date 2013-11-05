@@ -19,10 +19,11 @@ public class LoadSpawning{
 					String cmdName = s;
 					String mobName = sl.getCustomConfig().getString(s + ".Mobname");
 					String worlds  = sl.getCustomConfig().getString(s + ".Worlds");
+					String biomes = sl.getCustomConfig().getString(s + ".Biomes");
 					float chance = (float)sl.getCustomConfig().getDouble(s + ".Chance");
 					int priority = sl.getCustomConfig().getInt(s + ".Priority");
 					
-					EpicBoss.plugin.listSpawning.add(new EpicSpawning(cmdName, mobName, priority, chance, worlds));
+					EpicBoss.plugin.listSpawning.add(new EpicSpawning(cmdName, mobName, priority, chance, worlds, biomes));
 				}
 			}
 		}

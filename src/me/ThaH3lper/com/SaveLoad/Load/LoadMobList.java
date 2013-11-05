@@ -8,6 +8,7 @@ import me.ThaH3lper.com.EpicBoss;
 import me.ThaH3lper.com.Mobs.MobCommon;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -38,8 +39,11 @@ public class LoadMobList {
 		{
 			if(i.isDead() != true)
 			{
+				Bukkit.broadcastMessage(ChatColor.GREEN + "" + i.getUniqueId());
 				s += i.getUniqueId() + ":" + MobCommon.getEpicMob(i).cmdName + ":" + i.getWorld().getName() + ":" + i.getWorld().getChunkAt(i.getLocation()).getX() + ":" + i.getWorld().getChunkAt(i.getLocation()).getZ() + ",";
 			}
+			else
+				Bukkit.broadcastMessage(ChatColor.RED + "" + i.getUniqueId());
 		}
 		return s;
 	}

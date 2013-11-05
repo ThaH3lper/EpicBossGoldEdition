@@ -28,9 +28,11 @@ public class ItemCommands {
 		{
 			sender.sendMessage(EpicBoss.plugin.menu);
 			sender.sendMessage(ChatColor.LIGHT_PURPLE+ "/eb item list" + ChatColor.GREEN + "" + ChatColor.ITALIC+ " - List all items loaded");
+			sender.sendMessage(ChatColor.LIGHT_PURPLE + "/eb item drop" + ChatColor.GREEN + "" + ChatColor.ITALIC+ " - drops all items on ground around you");
 			sender.sendMessage(ChatColor.LIGHT_PURPLE + "/eb item list [word]" + ChatColor.GREEN + "" + ChatColor.ITALIC+ " - List all items whit matching word");
 			sender.sendMessage(ChatColor.LIGHT_PURPLE + "/eb item info [name]" + ChatColor.GREEN + "" + ChatColor.ITALIC+ " - Show info about the item");
 			sender.sendMessage(ChatColor.LIGHT_PURPLE + "/eb item get [item]" + ChatColor.GREEN + "" + ChatColor.ITALIC+ " - get the item");
+			sender.sendMessage(ChatColor.LIGHT_PURPLE + "/eb item give [item] [player]" + ChatColor.GREEN + "" + ChatColor.ITALIC+ " - get player a item");
 			sender.sendMessage(ChatColor.LIGHT_PURPLE + "/eb item show [Filename]" + ChatColor.GREEN + "" + ChatColor.ITALIC+ " - shows all items from that file [Example.yml]");
 		}
 		else if(args.length == 2)
@@ -38,11 +40,26 @@ public class ItemCommands {
 			if(args[1].equalsIgnoreCase("list"))
 			{	
 				String s = ChatColor.LIGHT_PURPLE + "All items: ";
+				sender.sendMessage(ChatColor.GREEN + "Items dropped");
 				for(EpicItems ei : EpicBoss.plugin.listItems)
 				{
 					s += ChatColor.RED + ei.cmdName + ChatColor.GRAY +", ";
 				}
 				sender.sendMessage(s);
+			}
+			else if(args[1].equalsIgnoreCase("drop"))
+			{	
+				if(sender instanceof Player)
+				{
+					sender.sendMessage(ChatColor.GREEN + "Items dropped");
+					Player p = (Player) sender;
+					for(EpicItems ei : EpicBoss.plugin.listItems)
+					{
+						p.getWorld().dropItem(p.getLocation(), ei.getItemStack());
+					}
+				}
+				else
+					sender.sendMessage(ChatColor.RED + "Can only be used from player!");
 			}
 		}
 		else if(args.length == 3)
@@ -126,6 +143,31 @@ public class ItemCommands {
 				}
 			}
 			
+		}
+		else if(args.length == 4)
+		{
+			if(args[1].equalsIgnoreCase("give"))
+			{	
+				if(ItemHandler.getEpicItem(args[2]) != null)
+				{
+					if(Bukkit.getPlayer(args[3]) != null)
+					{
+						Player p = Bukkit.getPlayer(args[3]);
+						if(p.isOnline())
+						{
+							EpicItems ei = ItemHandler.getEpicItem(args[2]);
+							p.getInventory().addItem(ei.getItemStack());
+							sender.sendMessage(ChatColor.GREEN + "Item Given");
+						}
+						else
+							sender.sendMessage(ChatColor.RED + "The player " + args[3] + " is not online!");
+					}
+					else
+						sender.sendMessage(ChatColor.RED + "There is no player called " + args[3]);
+				}
+				else
+					sender.sendMessage(ChatColor.RED + "There is no item called " + args[2]);
+			}
 		}
 	}
 }
