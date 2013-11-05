@@ -6,6 +6,7 @@ import java.util.List;
 import me.ThaH3lper.com.EpicBoss;
 import me.ThaH3lper.com.Mobs.MobHandler;
 
+import org.bukkit.block.Biome;
 import org.bukkit.entity.Animals;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
@@ -44,6 +45,8 @@ public class SpawningHandler {
 			return false;
 		if(!getType(es.em.Mobtype).equals(type))
 			return false;
+		if(!canSpawnInBiome(es.biomes, l))
+			return false;
 		if(es.chance >= EpicBoss.r.nextFloat())
 		{
 			LivingEntity liv = MobHandler.SpawnMob(es.em.cmdName, l.getLocation());
@@ -81,5 +84,14 @@ public class SpawningHandler {
 			return "Animal";
 		
 		return "None";
+	}
+	
+	public static boolean canSpawnInBiome(List<Biome> list, LivingEntity l)
+	{
+		if(list.size() == 0)
+			return true;
+		if(list.contains(l.getWorld().getBiome(l.getLocation().getBlockX(), l.getLocation().getBlockZ())))
+			return true;
+		return false;
 	}
 }
