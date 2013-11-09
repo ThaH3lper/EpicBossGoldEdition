@@ -43,6 +43,7 @@ public class LoadMobs{
 					
 					int size = sl.getCustomConfig().getInt(s + ".Tags.Size");
 					int color = sl.getCustomConfig().getInt(s + ".Tags.Color");
+					int maxCombatDistance = sl.getCustomConfig().getInt(s + ".Tags.MaxCombatDistance");
 					String oso = sl.getCustomConfig().getString(s + ".Tags.Ocelot");
 					String horseStyle = sl.getCustomConfig().getString(s + ".Tags.HorseStyle");
 					String horseType = sl.getCustomConfig().getString(s + ".Tags.HorseType");
@@ -55,7 +56,7 @@ public class LoadMobs{
 					List<String> equipment = sl.getCustomConfig().getStringList(s + ".Equipment");
 					
 					EpicBoss.plugin.listMobs.add(new EpicMobs(file, cmdName, Mobtype, Display, loot, equipment, health, damage, speed, knock, follow, skills, 
-							despawn, showhp, size, color, oso, horseStyle, horseType, horseColor, villagerType));
+							despawn, showhp, size, color, oso, horseStyle, horseType, horseColor, villagerType, maxCombatDistance));
 				}
 			}
 		}

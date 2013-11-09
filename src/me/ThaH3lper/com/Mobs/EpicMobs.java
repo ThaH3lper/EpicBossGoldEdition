@@ -13,9 +13,10 @@ public class EpicMobs {
 	public HashMap<String,Long> cooldowns;
 	public boolean despawn, showhp, fair = false;
 	int size, color;
+	public int maxCombatDistance;
 	
 	public EpicMobs(String file, String cmdName, String Mobtype, String Display, List<String> loot, List<String> equipment, double health, double damage, double speed, double knock, double follow, 
-			List<String> skills, boolean despawn, boolean showhp, int size, int color, String oso, String horseStyle, String horseType, String horseColor, String villagerType)
+			List<String> skills, boolean despawn, boolean showhp, int size, int color, String oso, String horseStyle, String horseType, String horseColor, String villagerType, int maxCombatDistance)
 	{
 		this.file = file;
 		this.cmdName = cmdName;
@@ -37,6 +38,7 @@ public class EpicMobs {
 		this.horseColor = horseColor;
 		this.loot = loot;
 		this.villagerType = villagerType;
+		this.maxCombatDistance = maxCombatDistance;
 		if(loot != null && loot.size() >= 1)
 		{
 			if(loot.get(0) != null)
