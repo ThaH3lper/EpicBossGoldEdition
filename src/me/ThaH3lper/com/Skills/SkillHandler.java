@@ -10,6 +10,7 @@ import me.ThaH3lper.com.SkillsCollection.SkillCommand;
 import me.ThaH3lper.com.SkillsCollection.SkillConsume;
 import me.ThaH3lper.com.SkillsCollection.SkillCustom;
 import me.ThaH3lper.com.SkillsCollection.SkillDamage;
+import me.ThaH3lper.com.SkillsCollection.SkillEffect;
 import me.ThaH3lper.com.SkillsCollection.SkillForcePull;
 import me.ThaH3lper.com.SkillsCollection.SkillForcePullNear;
 import me.ThaH3lper.com.SkillsCollection.SkillHeal;
@@ -133,6 +134,8 @@ public class SkillHandler {
 				SkillForcePullNear.ExecuteForcePullNear(l, skill, p);
 			else if(split[0].equals("consume"))
 				SkillConsume.ExecuteConsume(l, skill);
+			else if(split[0].equals("effect"))
+				SkillEffect.ExecuteEffect(l, skill, p);
 			else
 				SkillCustom.ExecuteCustom(l, skill, p);
 		}

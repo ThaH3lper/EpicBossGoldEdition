@@ -28,10 +28,23 @@ public class MobSkill implements Listener{
 		showHealth(l, em);
 		
 		if(e.getDamager() instanceof Player)	{
+			if(em.maxCombatDistance > 0)	{
+				if(l.getLocation().distanceSquared(e.getDamager().getLocation()) > em.maxCombatDistance*em.maxCombatDistance)	{
+					e.setCancelled(true);
+					return;
+				}
+			}
+			
 			SkillHandler.ExecuteSkills(em.skills, l, (Player) e.getDamager());
 			return;
 		} else	{
 			if(e.getDamager() instanceof Projectile)	{
+				if(em.maxCombatDistance > 0)	{
+					if(l.getLocation().distanceSquared(((Projectile)e.getDamager()).getShooter().getLocation()) > em.maxCombatDistance*em.maxCombatDistance)	{
+						e.setCancelled(true);
+						return;
+					}
+				}
 				if(((Projectile)e.getDamager()).getShooter() instanceof Player)	{
 					SkillHandler.ExecuteSkills(em.skills, l, (Player) ((Projectile)e.getDamager()).getShooter());
 					return;
