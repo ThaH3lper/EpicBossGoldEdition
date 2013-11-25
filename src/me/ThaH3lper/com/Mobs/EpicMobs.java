@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 
 public class EpicMobs {
 	
@@ -14,6 +15,7 @@ public class EpicMobs {
 	public boolean despawn, showhp, fair = false;
 	int size, color;
 	public int maxCombatDistance;
+	public Player targetChanger;
 	
 	public EpicMobs(String file, String cmdName, String Mobtype, String Display, List<String> loot, List<String> equipment, double health, double damage, double speed, double knock, double follow, 
 			List<String> skills, boolean despawn, boolean showhp, int size, int color, String oso, String horseStyle, String horseType, String horseColor, String villagerType, int maxCombatDistance)
@@ -49,6 +51,7 @@ public class EpicMobs {
 		}
 		this.equipment = equipment;
 		this.cooldowns = new HashMap<String,Long>();
+		this.targetChanger = null;
 	}
 	
 	public LivingEntity getLivingenEntity()

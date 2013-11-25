@@ -12,6 +12,7 @@ import me.ThaH3lper.com.Drops.EpicNormal;
 import me.ThaH3lper.com.Drops.Fair.FairDrops;
 import me.ThaH3lper.com.Items.EpicItems;
 import me.ThaH3lper.com.Listener.LeashEvent;
+import me.ThaH3lper.com.Listener.MobDamaged;
 import me.ThaH3lper.com.Listener.MobDrop;
 import me.ThaH3lper.com.Listener.MobHit;
 import me.ThaH3lper.com.Listener.MobSkill;
@@ -93,6 +94,7 @@ public class EpicBoss extends JavaPlugin{
 		manager.registerEvents(new MobSkill(), this);
 		manager.registerEvents(new SlimeSplit(), this);
 		manager.registerEvents(new MobSpawn(), this);
+		manager.registerEvents(new MobDamaged(), this);
 		manager.registerEvents(new SkillShootProjectileListener(), this);
 	}
 	
