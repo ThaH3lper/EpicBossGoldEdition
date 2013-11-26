@@ -40,7 +40,7 @@ public class SkillSwarm {
 					EpicMobs em = MobCommon.getEpicMob(s);
 					if(em != null)
 					{
-						for(int i = 0; i <= amount; i++)
+						for(int i = 1; i <= amount; i++)
 						{
 							double x = (l.getLocation().getX() - radious) + (EpicBoss.r.nextInt(radious * 2));
 							double z = (l.getLocation().getZ() - radious) + (EpicBoss.r.nextInt(radious * 2));
