@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.ThaH3lper.com.EpicBoss;
+import me.ThaH3lper.com.Mobs.EpicMobs;
 import me.ThaH3lper.com.Mobs.MobCommon;
 import me.ThaH3lper.com.SkillsCollection.SkillBossFirework;
 import me.ThaH3lper.com.SkillsCollection.SkillCommand;
@@ -16,6 +17,7 @@ import me.ThaH3lper.com.SkillsCollection.SkillForcePullNear;
 import me.ThaH3lper.com.SkillsCollection.SkillHeal;
 import me.ThaH3lper.com.SkillsCollection.SkillLightning;
 import me.ThaH3lper.com.SkillsCollection.SkillMsg;
+import me.ThaH3lper.com.SkillsCollection.SkillNewTarget;
 import me.ThaH3lper.com.SkillsCollection.SkillPack;
 import me.ThaH3lper.com.SkillsCollection.SkillPlayerFirework;
 import me.ThaH3lper.com.SkillsCollection.SkillPotion;
@@ -24,6 +26,7 @@ import me.ThaH3lper.com.SkillsCollection.SkillPotionMobs;
 import me.ThaH3lper.com.SkillsCollection.SkillPull;
 import me.ThaH3lper.com.SkillsCollection.SkillRadiousFirework;
 import me.ThaH3lper.com.SkillsCollection.SkillRadiusCommand;
+import me.ThaH3lper.com.SkillsCollection.SkillRandomPack;
 import me.ThaH3lper.com.SkillsCollection.SkillShootFireball;
 import me.ThaH3lper.com.SkillsCollection.SkillShootPotion;
 import me.ThaH3lper.com.SkillsCollection.SkillShootProjectile;
@@ -94,6 +97,8 @@ public class SkillHandler {
 				SkillRadiousFirework.ExecuteRadiousFirework(l, skill);
 			else if(split[0].equals("pack"))
 				SkillPack.ExecutePack(l, skill, p);
+			else if(split[0].equals("randompack"))
+				SkillRandomPack.ExecuteRandomPack(l, skill, p);
 			else if(split[0].equals("damage"))
 				SkillDamage.ExecuteDamage(l, skill, p);
 			else if(split[0].equals("heal"))
@@ -134,6 +139,8 @@ public class SkillHandler {
 				SkillForcePullNear.ExecuteForcePullNear(l, skill, p);
 			else if(split[0].equals("consume"))
 				SkillConsume.ExecuteConsume(l, skill);
+			else if(split[0].equals("newtarget"))
+				SkillNewTarget.ExecuteNewTarget(l, skill);
 			else if(split[0].equals("effect"))
 				SkillEffect.ExecuteEffect(l, skill, p);
 			else
@@ -222,6 +229,14 @@ public class SkillHandler {
         public void run() {
 			if (!cancelled) {
 				if (this.boss.isValid()) {
+					
+					EpicMobs em = MobCommon.getEpicMob(this.boss);
+					
+					if(em.targetChanger != null)	{
+						this.player = em.targetChanger;
+						em.targetChanger = null;
+					}
+					
 					if(this.player != null && this.player.isValid())	{
 						ExecutePackSkills(this.list, this.boss, this.player);
 						return;

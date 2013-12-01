@@ -1,15 +1,17 @@
 package me.ThaH3lper.com.SkillsCollection;
 
 import me.ThaH3lper.com.EpicBoss;
+import me.ThaH3lper.com.API.BossSkillEvent;
 import me.ThaH3lper.com.Skills.SkillHandler;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 public class SkillTeleportNear {
 	
-	// teleportnear horizontal_radius:vertical_radius
+	// teleportnear horizontal_radius:vertical_radius:[max_distance]
 		
 	public static void ExecuteTeleportNear(LivingEntity l, String skill, Player player)
 	{
@@ -25,6 +27,19 @@ public class SkillTeleportNear {
 		{
 			if(SkillHandler.CheckHealth(base[base.length-2], l, skill))
 			{	
+				if(data.length > 2)	{
+					int max_distance = Integer.parseInt(data[2]);
+					
+					if(l.getLocation().distanceSquared(player.getLocation()) > max_distance*max_distance)	{
+						return;
+					}
+				}
+				
+				BossSkillEvent event = new BossSkillEvent(l, skill, player, false);
+				Bukkit.getServer().getPluginManager().callEvent(event);
+				if(event.isChanceled())
+					return;
+				
 				Location Loc;
 				
 				Loc = player.getLocation();

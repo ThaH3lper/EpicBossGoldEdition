@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 
 public class SkillTeleport {
 	
-	// teleport!
+	// teleport [maxdistance] >0 1
 		
 	public static void ExecuteTeleport(LivingEntity l, String skill, Player player)
 	{
@@ -22,6 +22,14 @@ public class SkillTeleport {
 		{
 			if(SkillHandler.CheckHealth(base[base.length-2], l, skill))
 			{	
+				if(base.length > 3)	{
+					int max_distance = Integer.parseInt(base[2]);
+					
+					if(l.getLocation().distanceSquared(player.getLocation()) > max_distance*max_distance)	{
+						return;
+					}
+				}
+				
 				BossSkillEvent event = new BossSkillEvent(l, skill, player, false);
 				Bukkit.getServer().getPluginManager().callEvent(event);
 				if(event.isChanceled())

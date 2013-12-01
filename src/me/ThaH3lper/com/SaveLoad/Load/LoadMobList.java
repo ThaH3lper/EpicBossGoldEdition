@@ -39,11 +39,11 @@ public class LoadMobList {
 		{
 			if(i.isDead() != true)
 			{
-				Bukkit.broadcastMessage(ChatColor.GREEN + "" + i.getUniqueId());
+				//Bukkit.broadcastMessage(ChatColor.GREEN + "" + i.getUniqueId());
 				s += i.getUniqueId() + ":" + MobCommon.getEpicMob(i).cmdName + ":" + i.getWorld().getName() + ":" + i.getWorld().getChunkAt(i.getLocation()).getX() + ":" + i.getWorld().getChunkAt(i.getLocation()).getZ() + ",";
+			} else	{
+				//Bukkit.broadcastMessage(ChatColor.RED + "" + i.getUniqueId());
 			}
-			else
-				Bukkit.broadcastMessage(ChatColor.RED + "" + i.getUniqueId());
 		}
 		return s;
 	}

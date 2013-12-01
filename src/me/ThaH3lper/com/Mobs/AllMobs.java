@@ -25,6 +25,7 @@ import org.bukkit.entity.Silverfish;
 import org.bukkit.entity.Skeleton;
 import org.bukkit.entity.Skeleton.SkeletonType;
 import org.bukkit.entity.Slime;
+import org.bukkit.entity.Snowman;
 import org.bukkit.entity.Spider;
 import org.bukkit.entity.Squid;
 import org.bukkit.entity.Villager;
@@ -124,7 +125,7 @@ public class AllMobs {
 		}
 		else if(Mobtype.equalsIgnoreCase("snowman"))
 		{
-			Spider e = (Spider)l.getWorld().spawnEntity(l, EntityType.SNOWMAN);
+			Snowman e = (Snowman)l.getWorld().spawnEntity(l, EntityType.SNOWMAN);
 			return e;
 		}
 		else if(Mobtype.equalsIgnoreCase("slime"))

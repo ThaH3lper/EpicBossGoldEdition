@@ -70,7 +70,7 @@ public class SkillShootProjectile {
                 if((l instanceof Creature) && ((Creature)l).getTarget() == player)	{
                     projectile = l.launchProjectile(projectileClass);
                 	projectile.setVelocity(l.getLocation().getDirection().multiply(velocity));
-                	EpicBoss.plugin.logger.info("Fired!");
+                	//EpicBoss.plugin.logger.info("Fired!");
                 }	else	{
                 	projectile = l.launchProjectile(projectileClass);
                 	Vector facing = player.getLocation().toVector().subtract(l.getLocation().toVector()).normalize().multiply(velocity);                
