@@ -71,16 +71,28 @@ public class MobDrop implements Listener{
 			}
 			else if(!em.fair)
 			{
-				for(String s : em.loot)
+                		List<ItemStack> loot = new ArrayList<>();
+		                for(String s : em.loot)
 				{
 					EpicNormal en = DropHandler.getEpicNormal(s);
 					if(en != null)
 					{
 						BossDeathEvent event = new BossDeathEvent(l, l.getKiller(), en.getDrops(), en.getExp());
-						Bukkit.getServer().getPluginManager().callEvent(event);
-						DropHandler.Drop(event.getLivingEntity().getLocation(), event.getExp(), event.getDrops());
+                			        if (LoadSetup.lootCompatability){
+                            			for (ItemStack iS : event.getDrops()){
+                                			loot.add(iS);
+			                            }
+                        		} else {
+						    Bukkit.getServer().getPluginManager().callEvent(event);
+						    DropHandler.Drop(event.getLivingEntity().getLocation(), event.getExp(), event.getDrops());
+			                        }
 					}
 				}
+                		if (LoadSetup.lootCompatability){
+                    		for (ItemStack iS : loot){
+                        		e.getDrops().add(iS);
+	                        }
+        		    }
 			}
 			
 		}
