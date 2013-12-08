@@ -8,7 +8,7 @@ import me.ThaH3lper.com.Skills.SkillHandler;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
-import org.bukkit.craftbukkit.v1_6_R3.CraftWorld;
+import org.bukkit.craftbukkit.v1_7_R1.CraftWorld;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.Egg;
