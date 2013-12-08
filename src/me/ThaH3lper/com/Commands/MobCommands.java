@@ -16,6 +16,7 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDeathEvent;
@@ -63,16 +64,38 @@ public class MobCommands {
 				}
 				sender.sendMessage(s);
 			}
-			else if(args[1].equalsIgnoreCase("killall"))
-			{
-				for(LivingEntity l : EpicBoss.plugin.getMobsAll())
-				{
-					EntityDeathEvent event = new EntityDeathEvent(l, new ArrayList<ItemStack>(0));
-					EpicBoss.plugin.getServer().getPluginManager().callEvent(event);
-					l.remove();
-				}
-				sender.sendMessage(ChatColor.GREEN + "All bosses removed!");
-			}
+            else if(args[1].equalsIgnoreCase("killall"))
+            {
+                for(LivingEntity l : EpicBoss.plugin.getMobsAll())
+                {
+                    EntityDeathEvent event = new EntityDeathEvent(l, new ArrayList<ItemStack>(0));
+                    EpicBoss.plugin.getServer().getPluginManager().callEvent(event);
+                    l.remove();
+                }
+                sender.sendMessage(ChatColor.GREEN + "All bosses removed!");
+            }
+            else if(args[1].equalsIgnoreCase("killallplus"))
+            {
+                if (!(sender instanceof Player)){
+                    return;
+                }
+                Player p = (Player)sender;
+                for(LivingEntity l : EpicBoss.plugin.getMobsAll())
+                {
+                    EntityDeathEvent event = new EntityDeathEvent(l, new ArrayList<ItemStack>(0));
+                    EpicBoss.plugin.getServer().getPluginManager().callEvent(event);
+                    l.remove();
+                }
+                sender.sendMessage(ChatColor.GREEN + "All bosses removed!");
+                for (Entity e :p.getWorld().getEntities()){
+                    if (!(e instanceof Player)){
+                        if (e instanceof LivingEntity){
+                            e.remove();
+                        }
+                    }
+                }
+                sender.sendMessage(ChatColor.GREEN + "All Mobs removed!");
+            }
 		}
 		else if(args.length == 3)
 		{
