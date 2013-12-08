@@ -22,6 +22,7 @@ public class LoadSetup {
 	public static int Inteval = 5 * 60;
 	public static int timerupdate, walkupdate, ShowHealthRadius;
 	public static String ShowHealth;
+	public static boolean LootCompatability = false;
 	public static void ResetAll()
 	{
 		EpicBoss.plugin.saveItemList.clear();
@@ -114,6 +115,7 @@ public class LoadSetup {
 			walkupdate = EpicBoss.plugin.settings.getCustomConfig().getInt("WalkUpdate");		
 			ShowHealthRadius = EpicBoss.plugin.settings.getCustomConfig().getInt("ShowHealthRadius");
 			ShowHealth = EpicBoss.plugin.settings.getCustomConfig().getString("ShowHealth");
+			lootCompatability = EpicBoss.plugin.settings.getCustomConfig().getBoolean("LootCompatability");
 			ShowHealth = ChatColor.translateAlternateColorCodes('&', ShowHealth);
 		}
 	}
