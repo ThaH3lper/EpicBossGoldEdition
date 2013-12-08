@@ -1,7 +1,7 @@
 package me.ThaH3lper.com.SkillsCollection.EffectsCollection;
 
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_6_R3.CraftWorld;
+import org.bukkit.craftbukkit.v1_7_R1.CraftWorld;
 
 public class EffectSound {
 	

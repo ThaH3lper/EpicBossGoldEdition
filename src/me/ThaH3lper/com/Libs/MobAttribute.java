@@ -1,10 +1,10 @@
 package me.ThaH3lper.com.Libs;
 
-import net.minecraft.server.v1_6_R3.AttributeInstance;
-import net.minecraft.server.v1_6_R3.EntityInsentient;
-import net.minecraft.server.v1_6_R3.GenericAttributes;
+import net.minecraft.server.v1_7_R1.AttributeInstance;
+import net.minecraft.server.v1_7_R1.EntityInsentient;
+import net.minecraft.server.v1_7_R1.GenericAttributes;
 
-import org.bukkit.craftbukkit.v1_6_R3.entity.CraftLivingEntity;
+import org.bukkit.craftbukkit.v1_7_R1.entity.CraftLivingEntity;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 
