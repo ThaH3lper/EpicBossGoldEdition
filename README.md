@@ -1,5 +1,5 @@
 # EpicBossGoldEdition - A mincraft plugin
-A recoded version of EpicBossRecoded (https://github.com/ThaH3lper/EpicBossGoldEdition) and released on Sep 24, 2013.
+A recoded version of EpicBossRecoded (https://github.com/ThaH3lper/EpicBossRecoded) and released on Sep 24, 2013.
 This is the end of the plugin that was known as "EpicBoss".
 
 #### == EpicBoss | EpicBossRecoded | EpicBoss Gold Edition ==
