@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="EpicBoss">
+    <output-path>$USER_HOME$/Downloads</output-path>
+    <root id="archive" name="EpicBoss.jar">
+      <element id="module-output" name="EpicBoss Gold Edition" />
+      <element id="file-copy" path="$PROJECT_DIR$/ItemsExample.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/LootExample.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/MobsExample.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/plugin.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/SaveList.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/SkillExample.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/Settings.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/SpawningExample.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/TimerExample.yml" />
+    </root>
+  </artifact>
+</component>

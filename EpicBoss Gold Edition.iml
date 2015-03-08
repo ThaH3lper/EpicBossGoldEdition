@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
+  <component name="EclipseModuleManager">
+    <libelement value="file://C:/Users/Xikage/Documents/Minecraft Plugins/bukkit-1.6.4-R0.1-20130923.182036-4.jar" />
+    <libelement value="file://C:/Users/Xikage/Documents/Minecraft Plugins/craftbukkit-1.6.4-R0.1-20130923.182200-5.jar" />
+    <src_description expected_position="0">
+      <src_folder value="file://$MODULE_DIR$/src" expected_position="0" />
+    </src_description>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="false">
+    <output url="file://$MODULE_DIR$/target/classes" />
+    <output-test url="file://$MODULE_DIR$/target/test-classes" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/target" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="module-library">
+      <library name="bukkit-1.6.4-R0.1-20130923.182036-4.jar">
+        <CLASSES>
+          <root url="file://C:/Users/Xikage/Documents/Minecraft Plugins/bukkit-1.6.4-R0.1-20130923.182036-4.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="craftbukkit-1.6.4-R0.1-20130923.182200-5.jar">
+        <CLASSES>
+          <root url="file://C:/Users/Xikage/Documents/Minecraft Plugins/craftbukkit-1.6.4-R0.1-20130923.182200-5.jar" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="Maven: org.bukkit:bukkit:1.7.2-R0.1-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: org.bukkit:craftbukkit:1.7.2-R0.1-SNAPSHOT" level="project" />
+  </component>
+</module>
+
