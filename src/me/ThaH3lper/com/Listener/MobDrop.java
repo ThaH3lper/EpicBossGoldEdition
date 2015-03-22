@@ -1,5 +1,6 @@
 package me.ThaH3lper.com.Listener;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import me.ThaH3lper.com.Drops.EpicNormal;
 import me.ThaH3lper.com.Drops.Fair.FairDrops;
 import me.ThaH3lper.com.Drops.Fair.FairPlayer;
 import me.ThaH3lper.com.Mobs.EpicMobs;
+import me.ThaH3lper.com.SaveLoad.LoadSetup;
 import me.ThaH3lper.com.Mobs.MobCommon;
 import me.ThaH3lper.com.Skills.SkillHandler;
 import me.ThaH3lper.com.Timer.Timer;
@@ -26,6 +28,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class MobDrop implements Listener{
 
@@ -71,15 +74,29 @@ public class MobDrop implements Listener{
 			}
 			else if(!em.fair)
 			{
+				List<ItemStack> loot = new ArrayList<>();
 				for(String s : em.loot)
 				{
 					EpicNormal en = DropHandler.getEpicNormal(s);
 					if(en != null)
 					{
 						BossDeathEvent event = new BossDeathEvent(l, l.getKiller(), en.getDrops(), en.getExp());
-						Bukkit.getServer().getPluginManager().callEvent(event);
-						DropHandler.Drop(event.getLivingEntity().getLocation(), event.getExp(), event.getDrops());
+						
+
+						if (LoadSetup.lootCompatibility)	{
+                             for (ItemStack iS : event.getDrops()){
+                                 loot.add(iS);
+                             }
+                         } else {
+                             Bukkit.getServer().getPluginManager().callEvent(event);
+                             DropHandler.Drop(event.getLivingEntity().getLocation(), event.getExp(), event.getDrops());
+                         }
 					}
+				}
+				if (LoadSetup.lootCompatibility)	{
+	                 for (ItemStack iS : loot){
+	                     e.getDrops().add(iS);
+	                 }
 				}
 			}
 			
